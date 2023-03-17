@@ -28,14 +28,14 @@ function getPollution(lat, lon) {
         .then(data => {
             pollutionEl.innerHTML = `
                 <p>Air Quality Index (AQI): ${data.list[0].main.aqi}</p>
-                <p>Concentration of CO (carbon monoxide): ${data.list[0].components.co}</p>
-                <p>Concentration of NO (nitrogen monoxide): ${data.list[0].components.no}</p>
-                <p>Concentration of NO<sub>2</sub> (nitrogen dioxide): ${data.list[0].components.no2}</p>
-                <p>Concentration of O<sub>3</sub> (ozone): ${data.list[0].components.o3}</p>
-                <p>Concentration of SO<sub>2</sub> (sulphur dioxide): ${data.list[0].components.so2}</p>
-                <p>Concentration of PM<sub>2.5</sub> (fine particles matter): ${data.list[0].components.pm2_5}</p>
-                <p>Concentration of PM<sub>10</sub> (coarse particulate matter): ${data.list[0].components.pm10}</p>
-                <p>Concentration of NH<sub>3</sub> (ammonia): ${data.list[0].components.nh3}</p>
+                <p>Concentration of CO (carbon monoxide): ${data.list[0].components.co} &#181;g/m<sup>3</sup></p>
+                <p>Concentration of NO (nitrogen monoxide): ${data.list[0].components.no} &#181;g/m<sup>3</sup></p>
+                <p>Concentration of NO<sub>2</sub> (nitrogen dioxide): ${data.list[0].components.no2} &#181;g/m<sup>3</sup></p>
+                <p>Concentration of O<sub>3</sub> (ozone): ${data.list[0].components.o3} &#181;g/m<sup>3</sup></p>
+                <p>Concentration of SO<sub>2</sub> (sulphur dioxide): ${data.list[0].components.so2} &#181;g/m<sup>3</sup></p>
+                <p>Concentration of PM<sub>2.5</sub> (fine particles matter): ${data.list[0].components.pm2_5} &#181;g/m<sup>3</sup></p>
+                <p>Concentration of PM<sub>10</sub> (coarse particulate matter): ${data.list[0].components.pm10} &#181;g/m<sup>3</sup></p>
+                <p>Concentration of NH<sub>3</sub> (ammonia): ${data.list[0].components.nh3} &#181;g/m<sup>3</sup></p>
                 `
         });
 }
