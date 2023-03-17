@@ -1,13 +1,14 @@
 // reference to the "search" button element
 const searchBtn = document.getElementById('search-btn');
-// retrieve the input value that has been entered into the search field
-const searchInputVal = document.getElementById('search-input').value;
 // container to put pollution data into
 const pollutionEl = document.getElementById('pollution-container');
 
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
-searchBtn.getEventListener('click', function(event) {
-    event.preventDefault()
+searchBtn.addEventListener('click', function(event) {
+    // retrieve the input value that has been entered into the search field
+    let searchInputVal = document.getElementById('search-input').value;
+
+    event.preventDefault();
 
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=1&appid=64df37f68b0627d21253529450289fdb`)
         .then(response => response.json())
@@ -16,8 +17,8 @@ searchBtn.getEventListener('click', function(event) {
             const lon = data[0].lon;
 
             getPollution(lat, lon);
-        })
-})
+        });
+});
 
 // Call API to get pollution data and display it on the page
 function getPollution(lat, lon) {
@@ -36,6 +37,6 @@ function getPollution(lat, lon) {
                 <p>Concentration of PM<sub>2.5</sub> (fine particles matter): ${data.list[0].components.pm2_5} &#181;g/m<sup>3</sup></p>
                 <p>Concentration of PM<sub>10</sub> (coarse particulate matter): ${data.list[0].components.pm10} &#181;g/m<sup>3</sup></p>
                 <p>Concentration of NH<sub>3</sub> (ammonia): ${data.list[0].components.nh3} &#181;g/m<sup>3</sup></p>
-                `
+                `;
         });
 }
