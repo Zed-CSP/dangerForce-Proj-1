@@ -39,6 +39,7 @@ function getPollution(lat, lon) {
                 <p>Concentration of PM<sub>10</sub> (coarse particulate matter): ${data.list[0].components.pm10} &#181;g/m<sup>3</sup></p>
                 <p>Concentration of NH<sub>3</sub> (ammonia): ${data.list[0].components.nh3} &#181;g/m<sup>3</sup></p>
                 `;
+            var aqi = data.list[0].main.aqi;
         });
 }
 
@@ -65,4 +66,23 @@ const saveSearchHistory = (cityName, lat, lon) => {
     searchHistory.push(newSearchItem);
 
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+}
+
+// Aqi color function
+function aqiColor(aqi) {
+    if (aqi <= .50) {
+        return 'green';
+    } else if (aqi <= 1.00) {
+        return 'yellow';
+    } else if (aqi <= 1.50) {
+        return 'orange';
+    } else if (aqi <= 2.00) {
+        return 'red';
+    } else if (aqi <= 3.00) {
+        return 'purple';
+    } else if (aqi <= 4.00) {
+        return 'maroon';
+    } else if (aqi <= 5.00) {
+        return 'brown';
+    }
 }
