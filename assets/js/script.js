@@ -52,17 +52,17 @@ function getPollution(lat, lon) {
 function aqiColor(aqiData) {
     if (aqiData.aqi <= .50) {
         return 'green';
-    } else if (aqi <= 1.00) {
+    } else if (aqiData.aqi <= .100) {
         return 'yellow';
-    } else if (aqi <= 1.50) {
+    } else if (aqiData.aqi <= .150) {
         return 'orange';
-    } else if (aqi <= 2.00) {
+    } else if (aqiData.aqi <= .200) {
         return 'red';
-    } else if (aqi <= 3.00) {
+    } else if (aqiData.aqi <= .300) {
         return 'purple';
-    } else if (aqi <= 4.00) {
+    } else if (aqiData.aqi <= .400) {
         return 'maroon';
-    } else if (aqi <= 5.00) {
+    } else if (aqiData.aqi <= .500) {
         return 'brown';
     }
 }
@@ -81,4 +81,3 @@ function displayPollution(aqiData) {
     <p>Concentration of NH<sub>3</sub> (ammonia): ${aqiData.nh3} &#181;g/m<sup>3</sup></p>
     `;
 }
-
