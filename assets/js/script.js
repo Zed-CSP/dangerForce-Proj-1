@@ -38,5 +38,25 @@ function getPollution(lat, lon) {
                 <p>Concentration of PM<sub>10</sub> (coarse particulate matter): ${data.list[0].components.pm10} &#181;g/m<sup>3</sup></p>
                 <p>Concentration of NH<sub>3</sub> (ammonia): ${data.list[0].components.nh3} &#181;g/m<sup>3</sup></p>
                 `;
+            var aqi = data.list[0].main.aqi;
         });
+}
+
+// Aqi color function
+function aqiColor(aqi) {
+    if (aqi <= .50) {
+        return 'green';
+    } else if (aqi <= .100) {
+        return 'yellow';
+    } else if (aqi <= .150) {
+        return 'orange';
+    } else if (aqi <= .200) {
+        return 'red';
+    } else if (aqi <= .300) {
+        return 'purple';
+    } else if (aqi <= .400) {
+        return 'maroon';
+    } else if (aqi <= .500) {
+        return 'brown';
+    }
 }
