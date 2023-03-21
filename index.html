@@ -4,12 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/reset.css">
     <script src="https://cdn.tailwindcss.com"></script>  
     <link href="./assets/css/style.css">
+
     <title>Ask Sneeze!</title>
+    <style>
+      body {
+        background-image: url("assets/images/background.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    </style>
   </head>
   <body>
-    <div>Ask Sneeze</div>
+    <img class = 'logo' src="assets/images/logo.png" alt="logo">
+    <div id = "title" display = "inline">Ask Sneeze</div>
     <!-- main section for user interface -->
     <main>
       <!-- container for dynamic JS elements -->
@@ -24,8 +35,8 @@
         </form>
       </section>
       <!-- recent searches or favorite sneezes -->
-      <section>
-        <p>Tissue Box</p>
+      <section id = 'history'>
+        <p>Tissue Box - history search</p>
       </section>
     </main>
     <!-- footer for attributing sources for API data, images, etc. -->

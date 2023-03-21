@@ -19,6 +19,7 @@ searchBtn.addEventListener('click', function(event) {
             const lon = data[0].lon;
 
             getPollution(lat, lon);
+            saveSearchHistory(searchInputVal, lat, lon);
         });
 });
 
@@ -46,6 +47,31 @@ function getPollution(lat, lon) {
         }
         );
         
+}
+
+// function that stores search history in the local storage.
+const saveSearchHistory = (cityName, lat, lon) => {
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+
+    // an object containing the current city search.
+    let newSearchItem = {
+        cityName: cityName,
+        lat: lat,
+        lon: lon,
+    };
+
+    // an if-statement that verifies whether the current search city already exists in the localStorage and prevents it from being duplicated.
+    if (searchHistory.length > 0) {
+        for (let i = 0; i < searchHistory.length; i++) {
+            if (searchHistory[i].lat == newSearchItem.lat) {
+                return;
+            }
+        }
+    };
+
+    searchHistory.push(newSearchItem);
+
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 }
 
 // Aqi color function
