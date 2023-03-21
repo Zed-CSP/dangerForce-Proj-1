@@ -46,17 +46,17 @@ function getPollution(lat, lon) {
 function aqiColor(aqi) {
     if (aqi <= .50) {
         return 'green';
-    } else if (aqi <= .100) {
+    } else if (aqi <= 1.00) {
         return 'yellow';
-    } else if (aqi <= .150) {
+    } else if (aqi <= 1.50) {
         return 'orange';
-    } else if (aqi <= .200) {
+    } else if (aqi <= 2.00) {
         return 'red';
-    } else if (aqi <= .300) {
+    } else if (aqi <= 3.00) {
         return 'purple';
-    } else if (aqi <= .400) {
+    } else if (aqi <= 4.00) {
         return 'maroon';
-    } else if (aqi <= .500) {
+    } else if (aqi <= 5.00) {
         return 'brown';
     }
 }
