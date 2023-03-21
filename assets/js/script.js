@@ -44,9 +44,9 @@ function getPollution(lat, lon) {
         .then(() => {
             // call the function to display the pollution data
             displayPollution(aqiData);
-        }
-        );
-        
+            // call the function to display the gif
+            getGiphy(aqiData.aqi);
+        });
 }
 
 // function that stores search history in the local storage.
@@ -93,8 +93,9 @@ function aqiColor(aqiData) {
     }
 }
 
-
+// Display gif based on AQI value
 function getGiphy(aqi) {
+    // Create object of gif options for each AQI value
     const gifsByAqi = {
         1: [
             'iGA603zv8GB2SSm1Nv',
@@ -137,9 +138,11 @@ function getGiphy(aqi) {
         ]
     }
 
+    // Randomly select gif from array for AQI
     const gifIndex = Math.floor(Math.random() * gifsByAqi[aqi].length);
     const gifUrl = gifsByAqi[aqi][gifIndex];
 
+    // Create and append img element to display gif
     const gifEl = document.createElement('img');
     gifEl.setAttribute('src', `https://media.giphy.com/media/${gifUrl}/giphy.gif`);
     pollutionEl.appendChild(gifEl);
