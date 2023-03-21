@@ -52,17 +52,17 @@ function getPollution(lat, lon) {
 function aqiColor(aqiData) {
     if (aqiData.aqi <= .50) {
         return 'green';
-    } else if (aqiData.aqi <= .100) {
+    } else if (aqi <= 1.00) {
         return 'yellow';
-    } else if (aqiData.aqi <= .150) {
+    } else if (aqi <= 1.50) {
         return 'orange';
-    } else if (aqiData.aqi <= .200) {
+    } else if (aqi <= 2.00) {
         return 'red';
-    } else if (aqiData.aqi <= .300) {
+    } else if (aqi <= 3.00) {
         return 'purple';
-    } else if (aqiData.aqi <= .400) {
+    } else if (aqi <= 4.00) {
         return 'maroon';
-    } else if (aqiData.aqi <= .500) {
+    } else if (aqi <= 5.00) {
         return 'brown';
     }
 }
