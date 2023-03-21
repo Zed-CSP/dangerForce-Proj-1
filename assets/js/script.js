@@ -3,6 +3,8 @@ const searchBtn = document.getElementById('search-btn');
 // container to put pollution data into
 const pollutionEl = document.getElementById('pollution-container');
 
+var aqiData = {};
+
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
 searchBtn.addEventListener('click', function(event) {
     // retrieve the input value that has been entered into the search field
@@ -26,37 +28,56 @@ function getPollution(lat, lon) {
 
     fetch(requestUrl)
         .then(response => response.json())
-        .then(data => {
-            pollutionEl.innerHTML = `
-                <p>Air Quality Index (AQI): ${data.list[0].main.aqi}</p>
-                <p>Concentration of CO (carbon monoxide): ${data.list[0].components.co} &#181;g/m<sup>3</sup></p>
-                <p>Concentration of NO (nitrogen monoxide): ${data.list[0].components.no} &#181;g/m<sup>3</sup></p>
-                <p>Concentration of NO<sub>2</sub> (nitrogen dioxide): ${data.list[0].components.no2} &#181;g/m<sup>3</sup></p>
-                <p>Concentration of O<sub>3</sub> (ozone): ${data.list[0].components.o3} &#181;g/m<sup>3</sup></p>
-                <p>Concentration of SO<sub>2</sub> (sulphur dioxide): ${data.list[0].components.so2} &#181;g/m<sup>3</sup></p>
-                <p>Concentration of PM<sub>2.5</sub> (fine particles matter): ${data.list[0].components.pm2_5} &#181;g/m<sup>3</sup></p>
-                <p>Concentration of PM<sub>10</sub> (coarse particulate matter): ${data.list[0].components.pm10} &#181;g/m<sup>3</sup></p>
-                <p>Concentration of NH<sub>3</sub> (ammonia): ${data.list[0].components.nh3} &#181;g/m<sup>3</sup></p>
-                `;
-            var aqi = data.list[0].main.aqi;
-        });
+        //create then to create an object to hold the data
+        .then(data => aqiData = {
+            aqi: data.list[0].main.aqi,
+            co: data.list[0].components.co,
+            no: data.list[0].components.no,
+            no2: data.list[0].components.no2,
+            o3: data.list[0].components.o3,
+            so2: data.list[0].components.so2,
+            pm2_5: data.list[0].components.pm2_5,
+            pm10: data.list[0].components.pm10,
+            nh3: data.list[0].components.nh3,
+        })
+        .then(() => {
+            // call the function to display the pollution data
+            displayPollution(aqiData);
+        }
+        );
+        
 }
 
 // Aqi color function
-function aqiColor(aqi) {
-    if (aqi <= .50) {
+function aqiColor(aqiData) {
+    if (aqiData.aqi <= .50) {
         return 'green';
-    } else if (aqi <= 1.00) {
+    } else if (aqiData.aqi <= .100) {
         return 'yellow';
-    } else if (aqi <= 1.50) {
+    } else if (aqiData.aqi <= .150) {
         return 'orange';
-    } else if (aqi <= 2.00) {
+    } else if (aqiData.aqi <= .200) {
         return 'red';
-    } else if (aqi <= 3.00) {
+    } else if (aqiData.aqi <= .300) {
         return 'purple';
-    } else if (aqi <= 4.00) {
+    } else if (aqiData.aqi <= .400) {
         return 'maroon';
-    } else if (aqi <= 5.00) {
+    } else if (aqiData.aqi <= .500) {
         return 'brown';
     }
+}
+// display the pollution data on the page
+
+function displayPollution(aqiData) {
+    pollutionEl.innerHTML = `
+    <p>Air Quality Index (AQI): ${aqiData.aqi}</p>
+    <p>Concentration of CO (carbon monoxide): ${aqiData.co} &#181;g/m<sup>3</sup></p>
+    <p>Concentration of NO (nitrogen monoxide): ${aqiData.no} &#181;g/m<sup>3</sup></p>
+    <p>Concentration of NO<sub>2</sub> (nitrogen dioxide): ${aqiData.no2} &#181;g/m<sup>3</sup></p>
+    <p>Concentration of O<sub>3</sub> (ozone): ${aqiData.o3} &#181;g/m<sup>3</sup></p>
+    <p>Concentration of SO<sub>2</sub> (sulphur dioxide): ${aqiData.so2} &#181;g/m<sup>3</sup></p>
+    <p>Concentration of PM<sub>2.5</sub> (fine particles matter): ${aqiData.pm2_5} &#181;g/m<sup>3</sup></p>
+    <p>Concentration of PM<sub>10</sub> (coarse particulate matter): ${aqiData.pm10} &#181;g/m<sup>3</sup></p>
+    <p>Concentration of NH<sub>3</sub> (ammonia): ${aqiData.nh3} &#181;g/m<sup>3</sup></p>
+    `;
 }
