@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./assets/js/script.js"></script>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    
+
+    <script src="./assets/js/script.js" defer></script>
+    <script src="./assets/css/style.css"></script>
+
     <title>Ask Sneeze!</title>
     <style>
       body {
@@ -24,10 +25,10 @@
     <main>
       <!-- container for dynamic JS elements -->
       <section class="hero">
+        <section id = "pollution-container"></section>
         <!-- form for user location input -->
         <form>
-          <p style = "margin: 5% 10% 0 10%; text-align: center; font-size: 30px; color: rgb(82, 82, 82)">You have allergy, but you want to travel. Ask Sneeze to know if the city you would like to go has good sneezes</p>
-          
+          <p>You have allergy, but you want to travel. Ask Sneeze to know if the city you would like to go has good sneezes</p>        
           <input type="text" id="search-input" placeholder="Enter city name"/>
           <button id="search-btn">Search</button>
         </form>
@@ -37,5 +38,8 @@
         <p>Tissue Box - history search</p>
       </section>
     </main>
+    <!-- footer for attributing sources for API data, images, etc. -->
+    <footer>
+    </footer>
   </body>
 </html>
