@@ -5,43 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/reset.css">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> 
+    <script src="https://cdn.tailwindcss.com"></script>  
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <title>Ask Sneeze!</title>
-    <!-- <style>
-        /* why is this here and not in CSS */
-      body {
-        background-image: url("assets/images/background.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-    </style> -->
+ 
   </head>
   <body>
     <img class = 'logo' src="assets/images/logo.png" alt="logo">
     <div id = "title" display = "inline">Ask Sneeze</div>
     <!-- main section for user interface -->
-    <main>
-      <!-- container for dynamic JS elements -->
-      <section class="hero grid grid-cols-6-gap-4">
-        <section id = "pollution-container" class = "col-end-7 col-span-2"></section>
+    <main class="hero grid grid-cols-12">
+
         <!-- form for user location input -->
-        <form class = "col-start-1 col-end-3">
+        <form class = "col-start-3 col-end-10">
             <p>You have allergies, but you want to travel. Ask Sneeze to find out how much tissue you should bring!</p>
           <p>Enter location:</p>
           <input type="text" id="search-input" placeholder="Enter city name"/>
           <button id="search-btn">Achoo!</button>
         </form>
-      </section>
-      <!-- recent searches or favorite sneezes -->
-      <section id = 'history' class = "col-start-1 col-end-7">
-        <p>Tissue Box - history search</p>
-      </section>
+
+        <!-- recent searches or favorite sneezes -->
+        <section id = 'history' class = "col-start-1 col-end-5">
+          <p>Tissue Box - history search</p>
+        </section>
+
+      <!-- container for dynamic JS elements -->
+        <section id = "pollution-container" class = "col-start-6 col-end-12">
+
+        </section>
     </main>
     <!-- footer for attributing sources for API data, images, etc. -->
-    <footer>
+    <footer class = "col-start-2 col-end-11">
     </footer>
 
     <script src="./assets/js/script.js" defer></script>
