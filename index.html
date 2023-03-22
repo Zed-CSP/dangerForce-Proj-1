@@ -4,44 +4,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <script src="https://cdn.tailwindcss.com"></script>  
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Ask Sneeze!</title>
   </head>
-  
-  <body>
-    
-    <div>
-       
-        
-    </div>
-    <!-- main section for user interface -->
-    <main class="hero grid grid-cols-12">
-        <h1 id = "title" class = "col-start-3 col-end-10"> <img class = 'logo' src="./assets/images/76312_man-sneeze_lg.png" alt="logo">Sneeze the Day!</h1>
-        <!-- form for user location input -->
-        <form class = "col-start-3 col-end-10">
-          <p class="text-3xl text-white text-center">You have allergies, but you want to travel. Ask Sneeze to find out how much tissue you should bring!</p>
-          <p class="text-5xl text-center font-bold text-lime-700">Enter location:</p>
-          <input type="text" id="search-input" placeholder="Enter city name"/>
-          <button id="search-btn">Achoo!</button>
-        </form>
 
-        <!-- recent searches or favorite sneezes -->
-        <section id = 'history' class = "col-start-1 col-end-5">
-          <p>Tissue Box - history search</p>
-        </section>
+  <body>
+    <!-- main section for grid layout -->
+    <main class="hero grid grid-cols-12">
+      <h1 id="title" class="col-start-3 col-end-10">
+        <img
+          class="logo"
+          src="./assets/images/76312_man-sneeze_lg.png"
+          alt="logo"
+        />Sneeze the Day!
+      </h1>
+      <!-- form for user location input -->
+      <form class="col-start-3 col-end-10">
+        <p>
+          So you want to travel, but you have allergies. Search your destination
+          to find out how much tissue you should bring!
+        </p>
+        <p>Enter location:</p>
+        <input type="text" id="search-input" placeholder="Enter city name" />
+        <button id="search-btn">Achoo!</button>
+      </form>
+
+      <!-- recent searches or favorite sneezes -->
+      <section id="history" class="col-start-1 col-end-5">
+        <p>Tissue Box - history search</p>
+      </section>
 
       <!-- container for dynamic JS elements -->
-        <section id = "pollution-container" class = "col-start-6 col-end-12">
+      <section
+        id="pollution-container"
+        class="col-start-6 col-end-12"
+      ></section>
 
-        </section>
-
-        <footer class = "col-start-2 col-end-11">
-        </footer>
+      <!-- footer for attributing sources for API data, images, etc. -->
+      <footer class="col-start-2 col-end-11"></footer>
     </main>
-    <!-- footer for attributing sources for API data, images, etc. -->
-    
 
     <script src="./assets/js/script.js" defer></script>
   </body>
