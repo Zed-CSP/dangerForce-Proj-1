@@ -3,6 +3,13 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
+
+
+
+
+
+
 #title {
     font-size: 300%;
     font-weight: bolder;
@@ -18,14 +25,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 
-}
-
-#title {
-  font-size: 300%;
-  font-weight: bolder;
-  background-color: rgb(167, 195, 255);
-  color: rgb(0, 0, 121);
-  text-align: center;
 }
 
 img.logo {
