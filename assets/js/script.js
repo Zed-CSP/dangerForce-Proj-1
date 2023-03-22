@@ -99,11 +99,17 @@ searchBtn.addEventListener('click', function(event) {
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=1&appid=64df37f68b0627d21253529450289fdb`)
         .then(response => response.json())
         .then(data => {
-            const lat = data[0].lat;
-            const lon = data[0].lon;
+            if (data.length < 1) {
+                console.log('data is undefined')
+                alertMessage();
+            } else {
+                const lat = data[0].lat;
+                const lon = data[0].lon;
+    
+                getPollution(lat, lon);
+                saveSearchHistory(searchInputVal, lat, lon);
+            }
 
-            getPollution(lat, lon);
-            saveSearchHistory(searchInputVal, lat, lon);
         });
 });
 
