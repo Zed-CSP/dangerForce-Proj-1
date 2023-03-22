@@ -2,7 +2,10 @@
 const searchBtn = document.getElementById('search-btn');
 // container to put pollution data into
 const pollutionEl = document.getElementById('pollution-container');
+// container to put search history
+const searchHistoryEl = document.getElementById('history');
 
+const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 var aqiData = {};
 
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
@@ -51,8 +54,6 @@ function getPollution(lat, lon) {
 
 // function that stores search history in the local storage.
 const saveSearchHistory = (cityName, lat, lon) => {
-    const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-
     // an object containing the current city search.
     let newSearchItem = {
         cityName: cityName,
@@ -72,6 +73,8 @@ const saveSearchHistory = (cityName, lat, lon) => {
     searchHistory.push(newSearchItem);
 
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+    createCityButton(newSearchItem.cityName);
 }
 
 // Aqi color function
@@ -164,3 +167,18 @@ function displayPollution(aqiData) {
     `;
 }
 
+// Create a button for a city
+function createCityButton(cityName) {
+    const cityButton = document.createElement('button');
+    cityButton.setAttribute('type', 'button');
+    cityButton.textContent = cityName;
+    searchHistoryEl.appendChild(cityButton);
+}
+
+// Display search history
+function showHistory() {
+    searchHistory.forEach((element) => createCityButton(element.cityName));
+}
+
+// On page load, show search history
+showHistory();
