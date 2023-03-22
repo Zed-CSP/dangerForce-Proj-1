@@ -2,7 +2,10 @@
 const searchBtn = document.getElementById('search-btn');
 // container to put pollution data into
 const pollutionEl = document.getElementById('pollution-container');
+// container to put search history
+const searchHistoryEl = document.getElementById('history');
 
+const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 var aqiData = {};
 
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
@@ -51,8 +54,6 @@ function getPollution(lat, lon) {
 
 // function that stores search history in the local storage.
 const saveSearchHistory = (cityName, lat, lon) => {
-    const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-
     // an object containing the current city search.
     let newSearchItem = {
         cityName: cityName,
@@ -72,6 +73,8 @@ const saveSearchHistory = (cityName, lat, lon) => {
     searchHistory.push(newSearchItem);
 
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+    createCityButton(newSearchItem.cityName);
 }
 
 // Aqi color function
@@ -152,15 +155,30 @@ function getGiphy(aqi) {
 
 function displayPollution(aqiData) {
     pollutionEl.innerHTML = `
-    <p>Air Quality Index (AQI): ${aqiData.aqi}</p>
-    <p>Concentration of CO (carbon monoxide): ${aqiData.co} &#181;g/m<sup>3</sup></p>
-    <p>Concentration of NO (nitrogen monoxide): ${aqiData.no} &#181;g/m<sup>3</sup></p>
-    <p>Concentration of NO<sub>2</sub> (nitrogen dioxide): ${aqiData.no2} &#181;g/m<sup>3</sup></p>
-    <p>Concentration of O<sub>3</sub> (ozone): ${aqiData.o3} &#181;g/m<sup>3</sup></p>
-    <p>Concentration of SO<sub>2</sub> (sulphur dioxide): ${aqiData.so2} &#181;g/m<sup>3</sup></p>
-    <p>Concentration of PM<sub>2.5</sub> (fine particles matter): ${aqiData.pm2_5} &#181;g/m<sup>3</sup></p>
-    <p>Concentration of PM<sub>10</sub> (coarse particulate matter): ${aqiData.pm10} &#181;g/m<sup>3</sup></p>
-    <p>Concentration of NH<sub>3</sub> (ammonia): ${aqiData.nh3} &#181;g/m<sup>3</sup></p>
+    <p class="${aqi}">Air Quality Index (AQI): ${aqiData.aqi}</p>
+    <p class="${co}">Concentration of CO (carbon monoxide): ${aqiData.co} &#181;g/m<sup>3</sup></p>
+    <p class="${no}">Concentration of NO (nitrogen monoxide): ${aqiData.no} &#181;g/m<sup>3</sup></p>
+    <p class="${no2}">Concentration of NO<sub>2</sub> (nitrogen dioxide): ${aqiData.no2} &#181;g/m<sup>3</sup></p>
+    <p class="${o}">Concentration of O<sub>3</sub> (ozone): ${aqiData.o3} &#181;g/m<sup>3</sup></p>
+    <p class="${so}">Concentration of SO<sub>2</sub> (sulphur dioxide): ${aqiData.so2} &#181;g/m<sup>3</sup></p>
+    <p class="${pm25}">Concentration of PM<sub>2.5</sub> (fine particles matter): ${aqiData.pm2_5} &#181;g/m<sup>3</sup></p>
+    <p class="${pm10}">Concentration of PM<sub>10</sub> (coarse particulate matter): ${aqiData.pm10} &#181;g/m<sup>3</sup></p>
+    <p class="${nh}">Concentration of NH<sub>3</sub> (ammonia): ${aqiData.nh3} &#181;g/m<sup>3</sup></p>
     `;
 }
 
+// Create a button for a city
+function createCityButton(cityName) {
+    const cityButton = document.createElement('button');
+    cityButton.setAttribute('type', 'button');
+    cityButton.textContent = cityName;
+    searchHistoryEl.appendChild(cityButton);
+}
+
+// Display search history
+function showHistory() {
+    searchHistory.forEach((element) => createCityButton(element.cityName));
+}
+
+// On page load, show search history
+showHistory();
