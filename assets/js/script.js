@@ -56,7 +56,7 @@ function getPollution(lat, lon) {
 const saveSearchHistory = (cityName, lat, lon) => {
     // an object containing the current city search.
     let newSearchItem = {
-        cityName: cityName,
+        cityName: `${cityName}`,
         lat: lat,
         lon: lon,
     };
