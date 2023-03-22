@@ -6,7 +6,88 @@ const pollutionEl = document.getElementById('pollution-container');
 const searchHistoryEl = document.getElementById('history');
 
 const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-var aqiData = {};
+// Object to show at what value each component should map to each color
+const aqiAttributes = {
+    aqi: {
+        green: 1,
+        orange: 2,
+        red: 3,
+        purple: 4,
+        brown: 5
+    },
+    co: {
+        green: 4400,
+        yellow: 9400,
+        orange: 12400,
+        red: 15400,
+        purple: 30400,
+        maroon: 40400,
+        brown: 50400
+    },
+    no: {
+        green: 53,
+        yellow: 100,
+        orange: 360,
+        red: 649,
+        purple: 1249,
+        maroon: 1649,
+        brown: 2049
+    },
+    no2: {
+        green: 40,
+        yellow: 80,
+        orange: 180,
+        red: 280,
+        purple: 400,
+        maroon: 800,
+        brown: 1200
+    },
+    o3: {
+        green: 54,
+        yellow: 70,
+        orange: 85,
+        red: 105,
+        purple: 200,
+        maroon: 700,
+        brown: 1200
+    },
+    so2: {
+        green: 35,
+        yellow: 75,
+        orange: 185,
+        red: 304,
+        purple: 604,
+        maroon: 1004,
+        brown: 1404
+    },
+    pm2_5: {
+        green: 12,
+        yellow: 35.4,
+        orange: 55.4,
+        red: 150.4,
+        purple: 250.4,
+        maroon: 350.4,
+        brown: 500.4
+    },
+    pm10: {
+        green: 50,
+        yellow: 150,
+        orange: 250,
+        red: 350,
+        purple: 420,
+        maroon: 500,
+        brown: 600
+    },
+    nh3: {
+        green: 200,
+        yellow: 400,
+        orange: 800,
+        red: 1200,
+        purple: 1800,
+        maroon: 2400,
+        brown: 3000
+    }
+};
 
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
 searchBtn.addEventListener('click', function(event) {
@@ -45,8 +126,10 @@ function getPollution(lat, lon) {
             nh3: data.list[0].components.nh3,
         })
         .then(() => {
+            // call the function to set the colors
+            const colors = setColors(aqiData)
             // call the function to display the pollution data
-            displayPollution(aqiData);
+            displayPollution(colors);
             // call the function to display the gif
             getGiphy(aqiData.aqi);
         });
@@ -75,25 +158,6 @@ const saveSearchHistory = (cityName, lat, lon) => {
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
     createCityButton(newSearchItem.cityName);
-}
-
-// Aqi color function
-function aqiColor(aqiData) {
-    if (aqiData.aqi <= .50) {
-        return 'green';
-    } else if (aqiData.aqi <= .100) {
-        return 'yellow';
-    } else if (aqiData.aqi <= .150) {
-        return 'orange';
-    } else if (aqiData.aqi <= .200) {
-        return 'red';
-    } else if (aqiData.aqi <= .300) {
-        return 'purple';
-    } else if (aqiData.aqi <= .400) {
-        return 'maroon';
-    } else if (aqiData.aqi <= .500) {
-        return 'brown';
-    }
 }
 
 // Display gif based on AQI value
@@ -152,18 +216,17 @@ function getGiphy(aqi) {
 }
 
 // display the pollution data on the page
-
-function displayPollution(aqiData) {
+function displayPollution(colors) {
     pollutionEl.innerHTML = `
-    <p class="${aqi}">Air Quality Index (AQI): ${aqiData.aqi}</p>
-    <p class="${co}">Concentration of CO (carbon monoxide): ${aqiData.co} &#181;g/m<sup>3</sup></p>
-    <p class="${no}">Concentration of NO (nitrogen monoxide): ${aqiData.no} &#181;g/m<sup>3</sup></p>
-    <p class="${no2}">Concentration of NO<sub>2</sub> (nitrogen dioxide): ${aqiData.no2} &#181;g/m<sup>3</sup></p>
-    <p class="${o}">Concentration of O<sub>3</sub> (ozone): ${aqiData.o3} &#181;g/m<sup>3</sup></p>
-    <p class="${so}">Concentration of SO<sub>2</sub> (sulphur dioxide): ${aqiData.so2} &#181;g/m<sup>3</sup></p>
-    <p class="${pm25}">Concentration of PM<sub>2.5</sub> (fine particles matter): ${aqiData.pm2_5} &#181;g/m<sup>3</sup></p>
-    <p class="${pm10}">Concentration of PM<sub>10</sub> (coarse particulate matter): ${aqiData.pm10} &#181;g/m<sup>3</sup></p>
-    <p class="${nh}">Concentration of NH<sub>3</sub> (ammonia): ${aqiData.nh3} &#181;g/m<sup>3</sup></p>
+    <p class="${colors.aqi}">Air Quality Index (AQI): ${aqiData.aqi}</p>
+    <p class="${colors.co}">Concentration of CO (carbon monoxide): ${aqiData.co} &#181;g/m<sup>3</sup></p>
+    <p class="${colors.no}">Concentration of NO (nitrogen monoxide): ${aqiData.no} &#181;g/m<sup>3</sup></p>
+    <p class="${colors.no2}">Concentration of NO<sub>2</sub> (nitrogen dioxide): ${aqiData.no2} &#181;g/m<sup>3</sup></p>
+    <p class="${colors.o3}">Concentration of O<sub>3</sub> (ozone): ${aqiData.o3} &#181;g/m<sup>3</sup></p>
+    <p class="${colors.so2}">Concentration of SO<sub>2</sub> (sulphur dioxide): ${aqiData.so2} &#181;g/m<sup>3</sup></p>
+    <p class="${colors.pm2_5}">Concentration of PM<sub>2.5</sub> (fine particles matter): ${aqiData.pm2_5} &#181;g/m<sup>3</sup></p>
+    <p class="${colors.pm10}">Concentration of PM<sub>10</sub> (coarse particulate matter): ${aqiData.pm10} &#181;g/m<sup>3</sup></p>
+    <p class="${colors.nh3}">Concentration of NH<sub>3</sub> (ammonia): ${aqiData.nh3} &#181;g/m<sup>3</sup></p>
     `;
 }
 
@@ -178,6 +241,39 @@ function createCityButton(cityName) {
 // Display search history
 function showHistory() {
     searchHistory.forEach((element) => createCityButton(element.cityName));
+}
+
+// Set the color of each component
+function setColors() {
+    const colors = {};
+
+    // For each property in the aqiData object
+    for (const property in aqiData) {
+        const attributeObj = aqiAttributes[property];
+        let color = '';
+
+        // Compare the value for the component to the threshold values in attributeObj
+        // Set color accordingly
+        if (aqiData[property] <= attributeObj['green']) {
+            color = 'green';
+        } else if (aqiData[property] <= attributeObj['yellow']) {
+            color = 'yellow';
+        } else if (aqiData[property] <= attributeObj['orange']) {
+            color = 'orange';
+        } else if (aqiData[property] <= attributeObj['red']) {
+            color = 'red';
+        } else if (aqiData[property] <= attributeObj['purple']) {
+            color = 'purple';
+        } else if (aqiData[property] <= attributeObj['maroon']) {
+            color = 'maroon';
+        } else {
+            color = 'brown';
+        }
+        // Add component and corresponding color to colors object
+        colors[property] = color;
+    }
+
+    return colors;
 }
 
 // On page load, show search history
