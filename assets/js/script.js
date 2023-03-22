@@ -101,7 +101,8 @@ searchBtn.addEventListener('click', function(event) {
         .then(data => {
             if (data.length < 1) {
                 console.log('data is undefined')
-                alertMessage();
+                problemType = 'wrong city name';
+                modalMessage(problemType);
             } else {
                 const lat = data[0].lat;
                 const lon = data[0].lon;
@@ -109,7 +110,6 @@ searchBtn.addEventListener('click', function(event) {
                 getPollution(lat, lon);
                 saveSearchHistory(searchInputVal, lat, lon);
             }
-
         });
 });
 
@@ -280,6 +280,40 @@ function setColors() {
     }
 
     return colors;
+}
+
+
+// Display modal alert message
+function modalMessage(problemType) {
+    
+    const modalContainer = document.createElement('dialog');
+    modalContainer.setAttribute('id', 'modal-box');
+    
+    const emoji = document.createElement('img');
+    emoji.setAttribute('id', 'modal-emoji');
+    emoji.setAttribute('src', './assets/images/emoji-idk.png');
+    emoji.setAttribute('alt', "I don't know emoji");
+    
+    const modalMessage = document.createElement('h3');
+
+    if (problemType === 'wrong city name') {
+        modalMessage.textContent = 'Sorry, we could not locate the requested city. Please ensure that you have entered the correct city name.'; 
+    }
+    
+    const modalCloseBtn = document.createElement('button');
+    modalCloseBtn.setAttribute('id', 'modal-close-btn');
+    modalCloseBtn.textContent = 'dismiss';
+    
+    modalContainer.append(emoji, modalMessage, modalCloseBtn);
+    document.querySelector('body').appendChild(modalContainer);
+    
+    modalContainer.showModal();
+
+    // Hides modal alert on click "dismiss" button
+    modalCloseBtn.addEventListener('click', function() {
+      
+        modalContainer.close()
+    })
 }
 
 // On page load, show search history
