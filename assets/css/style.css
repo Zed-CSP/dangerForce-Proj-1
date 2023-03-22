@@ -62,3 +62,36 @@ img.logo {
   font-size: 25px;
   margin: 30% 0 0 10%;
 }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* color classes for displayPollution data */
+.green {
+    color: green;
+}
+
+.yellow {
+    color: rgb(198, 179, 8);
+}
+
+.orange {
+    color: orange;
+}
+
+.red {
+    color: rgb(182, 4, 4);
+}
+
+.purple {
+    color: purple;
+}
+
+.maroon {
+    color: maroon;
+}
+
+.brown {
+    color: rgb(111, 58, 58);
+}
