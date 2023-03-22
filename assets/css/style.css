@@ -1,15 +1,4 @@
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-
-
-
-
-
-
-
 #title {
     font-size: 300%;
     font-weight: bolder;
@@ -40,6 +29,7 @@ img.logo {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   font-size: 30px;
   position: absolute;
+  margin-top: 10px;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
