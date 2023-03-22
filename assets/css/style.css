@@ -2,25 +2,28 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-image: url("../images/wallpaperflare.com_wallpaper.jpg");
-  background-size:
-   cover;
-  background-position: center;
+  background-size: cover;
+  /* background-position: center; */
   background-repeat: no-repeat;
+  display: grid;
 }
 
 #title {
-  font-size: 300%;
+  font-size: 80%;
   font-weight: bolder;
-  background-color: rgb(167, 195, 255);
+  /* background-color: rgb(167, 195, 255); */
   color: rgb(0, 0, 121);
   text-align: center;
+  margin: 2%;
 }
 
-img.logo {
-  position: absolute;
+.logo {
+  /* position: absolute; */
+  width: 8%;
   top: 6;
   left: 8;
   border-radius: 50%;
+  display: inline; 
 }
 
 #search-input {
