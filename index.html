@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/reset.css">
-    <script src="https://cdn.tailwindcss.com"></script>  
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> 
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <title>Ask Sneeze!</title>
@@ -25,10 +25,10 @@
     <!-- main section for user interface -->
     <main>
       <!-- container for dynamic JS elements -->
-      <section class="hero">
-        <section id = "pollution-container"></section>
+      <section class="hero grid grid-cols-6-gap-4">
+        <section id = "pollution-container" class = "col-end-7 col-span-2"></section>
         <!-- form for user location input -->
-        <form>
+        <form class = "col-start-1 col-end-3">
             <p>You have allergies, but you want to travel. Ask Sneeze to find out how much tissue you should bring!</p>
           <p>Enter location:</p>
           <input type="text" id="search-input" placeholder="Enter city name"/>
@@ -36,7 +36,7 @@
         </form>
       </section>
       <!-- recent searches or favorite sneezes -->
-      <section id = 'history'>
+      <section id = 'history' class = "col-start-1 col-end-7">
         <p>Tissue Box - history search</p>
       </section>
     </main>
