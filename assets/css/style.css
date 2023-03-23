@@ -29,7 +29,7 @@ body {
   display: inline; 
 }
 
-#search-input {
+/* #search-input {
   border: 1px solid #ccc;
   padding: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -42,9 +42,9 @@ body {
   border-radius: 30px;
   text-align: center;
   width: 30%;
-}
+} */
 
-#search-btn {
+/* #search-btn {
   display: block;
   font-size: 25px;
   background-color: rgb(111, 185, 255);
@@ -57,7 +57,7 @@ body {
   border-radius: 10px;
   border: 2px solid rgb(0, 0, 121);
   width: 11%;
-}
+} */
 
 #search-btn:hover {
   background-color: rgb(148, 203, 255);
