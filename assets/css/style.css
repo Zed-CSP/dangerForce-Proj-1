@@ -135,18 +135,25 @@ body {
   }
   
   #modal-box h3 {
-    font-size: 150%;
-    line-height: 2rem;
+    /* this font size formula makes the text fluid. If you will resize your browser, 
+    you will see that font size is resizing accordingly to the size of the browser. */
+    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300))); 
+    line-height: 130%;
   }
   
   #modal-close-btn {
-    width: 28%;
     padding: 2% 5%;
     border: solid 1px black;
     background-color: rgb(199, 111, 199);
+    color: white;
     border-radius: 10px;
-    font-size: 150%;
+    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300))); 
     margin-top: 5%;
   }
-  
+
+  #modal-close-btn:hover {
+    background-color: rgb(230, 133, 230);
+    color: black;
+  }
+
   /* end of modal-box styling */
