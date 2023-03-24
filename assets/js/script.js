@@ -21,18 +21,21 @@ searchBtn.addEventListener('click', function(event) {
     } else {
         event.preventDefault();
 
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=1&appid=64df37f68b0627d21253529450289fdb`)
+        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=5&appid=64df37f68b0627d21253529450289fdb`)
         .then(response => response.json())
         .then(data => {
             if (data.length < 1) {
                 console.log('data is undefined')
                 modalMessage('wrong city name');
+            } else if (data.length > 1) {
+                modalMessage('multiple cities returned', data);
             } else {
                 const lat = data[0].lat;
                 const lon = data[0].lon;
+                const name = data[0].name;
     
                 getPollution(lat, lon);
-                saveSearchHistory(data[0].name, lat, lon);
+                saveSearchHistory(name, lat, lon);
             }
         });
     }   
@@ -121,7 +124,7 @@ function displayPollution(colors) {
 function createCityButton(cityName) {
     const cityButton = document.createElement('button');
     cityButton.setAttribute('type', 'button');
-    cityButton.setAttribute('class', 'history-btn');
+    cityButton.setAttribute('class', 'location-btn');
     cityButton.textContent = cityName;
     searchHistoryEl.appendChild(cityButton);
 }
@@ -171,7 +174,7 @@ function setColors() {
 
 
 // Display modal alert message
-function modalMessage(problemType) {
+function modalMessage(problemType, returnedData) {
     
     const modalContainer = document.createElement('dialog');
     modalContainer.setAttribute('id', 'modal-box');
@@ -187,12 +190,32 @@ function modalMessage(problemType) {
         modalMessage.textContent = 'Sorry, we could not locate the requested city. Please ensure that you have entered the correct city name.'; 
     } else if (problemType === 'empty input value') {
         modalMessage.textContent = 'The input field must not be left empty. Please enter a city name.';    
+    } else if (problemType === 'multiple cities returned') {
+        let htmlString = '';
+
+        // Create button elements for each returned result
+        for (let i = 0; i < returnedData.length; i++) {
+            let currentResult = returnedData[i];
+            if (currentResult.state) {
+                htmlString += `<button id="${i}" class="location-btn">${currentResult.state}, ${currentResult.country}</button>`;
+            } else {
+                htmlString += `<button id="${i}" class="location-btn">${currentResult.country}</button>`;
+            }
+        }
+
+        // Add explanatory text and button elements to modal message
+        modalMessage.innerHTML = `
+            <p>Your search returned multiple results. Please choose your desired city:</p>
+            <form class="form" method="dialog" id="mult-results">
+                ${htmlString}
+            </form>
+        `
     }
     
     const modalCloseBtn = document.createElement('button');
     modalCloseBtn.setAttribute('id', 'modal-close-btn');
     modalCloseBtn.textContent = 'dismiss';
-    
+
     modalContainer.append(emoji, modalMessage, modalCloseBtn);
     document.querySelector('body').appendChild(modalContainer);
     
@@ -203,6 +226,20 @@ function modalMessage(problemType) {
       
         modalContainer.close()
     })
+
+    // When multiple cities returned, run search based on city selected in modal message
+    if (problemType === 'multiple cities returned') {
+        const resultsForm = document.getElementById('mult-results');
+        resultsForm.addEventListener('click', function (event) {
+            const clickedEl = event.target;
+            if (clickedEl.matches('button')) {
+                const index = clickedEl.getAttribute('id');
+                const clarifiedResult = returnedData[index];
+                getPollution(clarifiedResult.lat, clarifiedResult.lon);
+                saveSearchHistory(clarifiedResult.name, clarifiedResult.lat, clarifiedResult.lon);
+            }
+        })
+    }
 }
 
 // The event listener captures the selected button and its city name text content, 
@@ -213,7 +250,7 @@ searchHistoryEl.addEventListener('click', function (event) {
     
     let chosenButtonTextContent = event.target.textContent;
 
-    if (event.target.getAttribute('class') !== 'history-btn') {
+    if (event.target.getAttribute('class') !== 'location-btn') {
         return
     } else {
         console.log(chosenButtonTextContent);
