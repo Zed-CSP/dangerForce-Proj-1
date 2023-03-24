@@ -13,36 +13,43 @@
   <body>
     <!-- main section for user interface -->
     <main class="hero grid grid-cols-12 grid-rows-12 h-screen space-y-2">
-      <h1 id="title" class="col-start-4 col-end-10 row-span-1">
+      <h1 id="title" class="col-start-4 col-end-10 h-full ">
         <img
-          class="logo"
+          class="logo object-scale-down "
           src="./assets/images/logo-image.png"
           alt="logo"
         />Sneeze the Day!
       </h1>
       <!-- form for user location input -->
-      <form class="col-start-6 col-end-8 row-start-2 row-end-3 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity 20 bg-sky-900 opacity-40 place-items-center space-y-2">
+      <form
+        class="col-start-5 col-span-4 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity 20 bg-sky-900 opacity-40 place-items-center space-y-2"
+      >
         <input
           type="text"
           id="search-input"
           placeholder="Enter city name"
-          class="place-self-auto text-center border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-blue-100 text-xl cursor-text leading-loose justify-items-center"
+          class=" text-center border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-blue-100 text-xl cursor-text leading-loose justify-items-center"
         />
-        <button id="search-btn" class="place-self-auto block static text-center border-solid rounded-md border-indigo-500/100 drop-shadow-md opacity-80 bg-amber-400 opacity-50 text-xl leading-loose ">Achoo!</button>
+        <button
+          id="search-btn"
+          class=" block static text-center border-solid rounded-md border-indigo-500/100 drop-shadow-md opacity-80 bg-amber-400 opacity-50 text-xl leading-loose"
+        >
+          Achoo!
+        </button>
       </form>
 
       <!-- recent searches or favorite sneezes -->
       <section
         id="history"
-        class="col-start-2 col-span-3 row-start-7 row-span-6 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-300"
+        class="col-start-2 col-span-3 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-300"
       >
-        <p class="text-center underline-offset-8">Tissue Box</p>
+        <p class="text-center underline-offset-8">Past Sneezes</p>
       </section>
 
       <!-- container for dynamic JS elements -->
       <section
         id="pollution-container"
-        class="col-start-6 col-end-12 row-start-7 row-span-6 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-200"
+        class="col-start-6 col-span-6 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-200 block"
       >
         <p class="text-3xl text-orange-700 text-center">
           You have allergies, but you want to see the world...or at least leave
@@ -55,9 +62,9 @@
         </p>
       </section>
 
-      <footer class="col-start-2 col-end-12 row-start 12 row-span-1 text-center border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-700 ">
-        
-      </footer>
+      <footer
+        class="col-start-1 col-span-12 text-center border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-700"
+      ></footer>
     </main>
 
     <script src="./assets/js/script.js" defer></script>
