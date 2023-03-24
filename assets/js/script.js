@@ -6,6 +6,8 @@ const pollutionEl = document.getElementById('pollution-container');
 const searchHistoryEl = document.getElementById('history');
 //  form element
 const formEl = document.getElementById('search-form');
+// section dom element
+const aboutEl = document.getElementById('about-sneeze');
 
 const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
@@ -131,10 +133,10 @@ function createCityButton(cityName) {
 
 // Display search history
 function showHistory() {
-    //remove hide class from searchHistoryEl
+    aboutEl.classList.add('hide');
     searchHistoryEl.classList.remove('hide');
-    formEl.classList.remove('col-start-5', 'col-span-4');
-    formEl.classList.add('col-start-2', 'col-span-3');
+    formEl.classList.remove('col-start-5', 'col-span-4', 'row-start-3');
+    formEl.classList.add('col-start-2', 'col-span-3', 'row-start-2');
     pollutionEl.classList.remove('hide');
     searchHistory.forEach((element) => createCityButton(element.cityName));
 }
