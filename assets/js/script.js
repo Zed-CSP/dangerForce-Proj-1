@@ -33,7 +33,8 @@ searchBtn.addEventListener('click', function(event) {
                 saveSearchHistory(data[0].name, lat, lon);
             }
         });
-    }    
+    }   
+    showHistory(); 
 });
 
 // Call API to get pollution data and display it on the page
@@ -125,6 +126,8 @@ function createCityButton(cityName) {
 
 // Display search history
 function showHistory() {
+    //remove hide class from searchHistoryEl
+    searchHistoryEl.classList.remove('hide');
     searchHistory.forEach((element) => createCityButton(element.cityName));
 }
 
@@ -220,8 +223,5 @@ searchHistoryEl.addEventListener('click', function (event) {
         getPollution(cityLat, cityLon);
     }
 })
-
-// On page load, show search history
-showHistory();
 
 // no changes. pull main
