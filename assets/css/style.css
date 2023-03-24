@@ -159,7 +159,8 @@ body {
     content: "📍";
   }
   .hide {
-    display: none;
+    display: none !important;
+    
   }
 
   .history-btn:hover {
