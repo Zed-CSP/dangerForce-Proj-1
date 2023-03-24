@@ -16,9 +16,11 @@ body {
   font-size: 300%;
   font-weight: bolder;
   /* background-color: rgb(167, 195, 255); */
-  color: rgb(0, 0, 121);
   text-align: center;
   margin: 2%;
+  background: linear-gradient(to bottom, #9df0ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .logo {
@@ -151,7 +153,9 @@ body {
     border-bottom: solid 1px gray;
     text-align: center;
   }
-
+  .history-btn::after {
+    content: "📍";
+  }
   .hide {
     display: none;
   }
