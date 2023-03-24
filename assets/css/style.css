@@ -59,16 +59,16 @@ body {
   width: 11%;
 } */
 
-#search-btn:hover {
+/* #search-btn:hover {
   background-color: rgb(148, 203, 255);
   color: rgb(26, 26, 177);
   box-shadow: 0 0 5px rgba(59, 59, 59, 0.3);
-}
+} */
 
-#history {
+/* #history {
   font-size: 25px;
   margin: 30% 0 0 10%;
-}
+} */
 
 /* color classes for displayPollution data */
 .green {
