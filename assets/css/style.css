@@ -143,3 +143,15 @@ body {
   }
 
   /* end of modal-box styling */
+
+  .history-btn {
+    display: block;
+    color: rgb(69, 69, 255);
+    margin: 5px 10px 0 65px;
+    border-bottom: solid 1px gray;
+    text-align: center;
+  }
+
+  .hide {
+    display: none;
+  }
