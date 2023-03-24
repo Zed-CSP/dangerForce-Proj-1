@@ -94,15 +94,18 @@ searchBtn.addEventListener('click', function(event) {
     // retrieve the input value that has been entered into the search field
     let searchInputVal = document.getElementById('search-input').value;
 
-    event.preventDefault();
+    if (!searchInputVal) {
+        event.preventDefault();
+        modalMessage('empty input value')
+    } else {
+        event.preventDefault();
 
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=1&appid=64df37f68b0627d21253529450289fdb`)
+        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=1&appid=64df37f68b0627d21253529450289fdb`)
         .then(response => response.json())
         .then(data => {
             if (data.length < 1) {
                 console.log('data is undefined')
-                problemType = 'wrong city name';
-                modalMessage(problemType);
+                modalMessage('wrong city name');
             } else {
                 const lat = data[0].lat;
                 const lon = data[0].lon;
@@ -111,6 +114,7 @@ searchBtn.addEventListener('click', function(event) {
                 saveSearchHistory(searchInputVal, lat, lon);
             }
         });
+    }    
 });
 
 // Call API to get pollution data and display it on the page
@@ -150,6 +154,15 @@ const saveSearchHistory = (cityName, lat, lon) => {
         lon: lon,
     };
 
+    // To limit the array of objects to a maximum of 10 items, an if-statement has been added to remove the last items until there are only 9 remaining. 
+    // The new city is added to the beginning of the array using the unshift() method below, becoming the 10th and most recent item.
+    if (searchHistory.length >= 10) {
+        while (searchHistory.length > 9) {
+            searchHistory.pop();
+            console.log(searchHistory.length)
+        }   
+    }
+
     // an if-statement that verifies whether the current search city already exists in the localStorage and prevents it from being duplicated.
     if (searchHistory.length > 0) {
         for (let i = 0; i < searchHistory.length; i++) {
@@ -159,11 +172,11 @@ const saveSearchHistory = (cityName, lat, lon) => {
         }
     };
 
-    searchHistory.push(newSearchItem);
-
+    searchHistory.unshift(newSearchItem);
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
     createCityButton(newSearchItem.cityName);
+    document.getElementById('search-input').value = ''; // erases the input field's contents.
 }
 
 // Display gif based on AQI value
@@ -240,6 +253,7 @@ function displayPollution(colors) {
 function createCityButton(cityName) {
     const cityButton = document.createElement('button');
     cityButton.setAttribute('type', 'button');
+    cityButton.setAttribute('class', 'history-btn');
     cityButton.textContent = cityName;
     searchHistoryEl.appendChild(cityButton);
 }
@@ -298,6 +312,8 @@ function modalMessage(problemType) {
 
     if (problemType === 'wrong city name') {
         modalMessage.textContent = 'Sorry, we could not locate the requested city. Please ensure that you have entered the correct city name.'; 
+    } else if (problemType === 'empty input value') {
+        modalMessage.textContent = 'The input field must not be left empty. Please enter a city name.';    
     }
     
     const modalCloseBtn = document.createElement('button');
@@ -316,5 +332,31 @@ function modalMessage(problemType) {
     })
 }
 
+// The event listener captures the selected button and its city name text content, 
+// and subsequently passes latitude and longitude values corresponding to the chosen city name to the getPollution().
+searchHistoryEl.addEventListener('click', function (event) {
+
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    
+    let chosenButtonTextContent = event.target.textContent;
+
+    if (event.target.getAttribute('class') !== 'history-btn') {
+        return
+    } else {
+        console.log(chosenButtonTextContent);
+    
+        // the function determines the index of an object in the local storage 
+        // by using the selected button and the text content of its associated city name.
+        let cityIndex = searchHistory.findIndex(element => element.cityName === chosenButtonTextContent);
+
+        let cityLat = searchHistory[cityIndex].lat;
+        let cityLon = searchHistory[cityIndex].lon;
+    
+        getPollution(cityLat, cityLon);
+    }
+})
+
 // On page load, show search history
 showHistory();
+
+// no changes. pull main
