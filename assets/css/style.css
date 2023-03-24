@@ -16,11 +16,11 @@ body {
   font-size: 300%;
   font-weight: bolder;
   /* background-color: rgb(167, 195, 255); */
-  color: rgb(184, 253, 255);
   text-align: center;
   margin: 2%;
-  background: linear-gradient(to bottom, #ff5733, #900c3f);
-
+  background: linear-gradient(to bottom, #9df0ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .logo {
