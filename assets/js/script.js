@@ -249,6 +249,7 @@ function displayPollution(colors) {
 function createCityButton(cityName) {
     const cityButton = document.createElement('button');
     cityButton.setAttribute('type', 'button');
+    cityButton.setAttribute('class', 'history-btn');
     cityButton.textContent = cityName;
     searchHistoryEl.appendChild(cityButton);
 }
@@ -325,5 +326,31 @@ function modalMessage(problemType) {
     })
 }
 
+// The event listener captures the selected button and its city name text content, 
+// and subsequently passes latitude and longitude values corresponding to the chosen city name to the getPollution().
+searchHistoryEl.addEventListener('click', function (event) {
+
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    
+    let chosenButtonTextContent = event.target.textContent;
+
+    if (event.target.getAttribute('class') !== 'history-btn') {
+        return
+    } else {
+        console.log(chosenButtonTextContent);
+    
+        // the function determines the index of an object in the local storage 
+        // by using the selected button and the text content of its associated city name.
+        let cityIndex = searchHistory.findIndex(element => element.cityName === chosenButtonTextContent);
+
+        let cityLat = searchHistory[cityIndex].lat;
+        let cityLon = searchHistory[cityIndex].lon;
+    
+        getPollution(cityLat, cityLon);
+    }
+})
+
 // On page load, show search history
 showHistory();
+
+// no changes. pull main
