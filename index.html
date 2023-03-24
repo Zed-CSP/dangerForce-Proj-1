@@ -11,34 +11,51 @@
   </head>
 
   <body>
-    
-    <div>
-       
-        
-    </div>
     <!-- main section for user interface -->
-    <main class="hero grid grid-cols-12 grid-rows-7">
-        <h1 id = "title" class = "col-start-3 col-end-10 row-span-1"> <img class = 'logo' src="./assets/images/76312_man-sneeze_lg.png" alt="logo">Sneeze the Day!</h1>
-        <!-- form for user location input -->
-        <form class = "col-start-3 col-end-10 row-span-1">
-          <p class="text-3xl text-white text-center">You have allergies, but you want to travel. Ask Sneeze to find out how much tissue you should bring!</p>
-          <p class="text-5xl text-center font-bold text-lime-700">Enter location:</p>
-          <input type="text" id="search-input" placeholder="Enter city name"/>
-          <button id="search-btn">Achoo!</button>
-        </form>
+    <main class="hero grid grid-cols-12 grid-rows-12 h-screen space-y-2">
+      <h1 id="title" class="col-start-4 col-end-10 row-span-1">
+        <img
+          class="logo"
+          src="./assets/images/logo-image.png"
+          alt="logo"
+        />Sneeze the Day!
+      </h1>
+      <!-- form for user location input -->
+      <form class="col-start-6 col-end-8 row-start-2 row-end-3 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity 20 bg-sky-900 opacity-40 place-items-center space-y-2">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Enter city name"
+          class="place-self-auto text-center border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-blue-100 text-xl cursor-text leading-loose justify-items-center"
+        />
+        <button id="search-btn" class="place-self-auto block static text-center border-solid rounded-md border-indigo-500/100 drop-shadow-md opacity-80 bg-amber-400 opacity-50 text-xl leading-loose ">Achoo!</button>
+      </form>
 
-        <!-- recent searches or favorite sneezes -->
-        <section id = 'history' class = "col-start-1 col-end-5 row-span-4">
-          <p>Tissue Box - history search</p>
-        </section>
+      <!-- recent searches or favorite sneezes -->
+      <section
+        id="history"
+        class="col-start-1 col-span-4 row-start-7 row-span-6 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-300"
+      >
+        <p class="text-center underline-offset-8">Tissue Box</p>
+      </section>
 
       <!-- container for dynamic JS elements -->
-        <section id = "pollution-container" class = "col-start-6 col-end-12 row-span 4">
+      <section
+        id="pollution-container"
+        class="col-start-6 col-end-12 row-start-7 row-span-6 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-200"
+      >
+        <p class="text-3xl text-orange-700 text-center">
+          You have allergies, but you want to see the world...or at least leave
+          the house.
+        </p>
+        <br />
+        <p class="text-3xl text-orange-700 text-center">
+          Enter a city to sneeze the day and find out how much tissue you should
+          bring!
+        </p>
+      </section>
 
-        </section>
-
-        <footer class = "col-start-2 col-end-11 row-span-1">
-        </footer>
+      <footer class="col-start-2 col-end-11 row-span-1"></footer>
     </main>
 
     <script src="./assets/js/script.js" defer></script>
