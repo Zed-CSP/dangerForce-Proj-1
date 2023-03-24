@@ -16,14 +16,14 @@ body {
   font-size: 300%;
   font-weight: bolder;
   /* background-color: rgb(167, 195, 255); */
-  color: rgb(0, 0, 121);
+  color: rgb(255, 255, 255);
   text-align: center;
   margin: 2%;
 }
 
 .logo {
   width: 8%;
-  top: 6;
+  top: 3;
   left: 8;
   border-radius: 50%;
   display: inline; 
@@ -151,7 +151,7 @@ body {
     border-bottom: solid 1px gray;
     text-align: center;
   }
-  .history.btn::after {
+  .history-btn::after {
     content: "📍";
   }
   .hide {
