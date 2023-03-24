@@ -148,14 +148,14 @@ body {
 
   /* end of modal-box styling */
 
-  .history-btn {
+  .location-btn {
     display: block;
     color: rgb(69, 69, 255);
     margin: 5px 10px 0 65px;
     border-bottom: solid 1px gray;
     text-align: center;
   }
-  .history-btn::after {
+  .location-btn::after {
     content: "📍";
   }
   .hide {
@@ -163,7 +163,7 @@ body {
     
   }
 
-  .history-btn:hover {
+  .location-btn:hover {
     color: rgb(0, 0, 255);
     border-bottom: solid 1px rgb(0, 0, 255);
   }
