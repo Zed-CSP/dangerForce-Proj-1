@@ -150,6 +150,15 @@ const saveSearchHistory = (cityName, lat, lon) => {
         lon: lon,
     };
 
+    // To limit the array of objects to a maximum of 10 items, an if-statement has been added to remove the last items until there are only 9 remaining. 
+    // The new city is added to the beginning of the array using the unshift() method below, becoming the 10th and most recent item.
+    if (searchHistory.length >= 10) {
+        while (searchHistory.length > 9) {
+            searchHistory.pop();
+            console.log(searchHistory.length)
+        }   
+    }
+
     // an if-statement that verifies whether the current search city already exists in the localStorage and prevents it from being duplicated.
     if (searchHistory.length > 0) {
         for (let i = 0; i < searchHistory.length; i++) {
@@ -159,11 +168,11 @@ const saveSearchHistory = (cityName, lat, lon) => {
         }
     };
 
-    searchHistory.push(newSearchItem);
-
+    searchHistory.unshift(newSearchItem);
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
     createCityButton(newSearchItem.cityName);
+    document.getElementById('search-input').value = ''; // erases the input field's contents.
 }
 
 // Display gif based on AQI value
