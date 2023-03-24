@@ -4,6 +4,8 @@ const searchBtn = document.getElementById('search-btn');
 const pollutionEl = document.getElementById('pollution-container');
 // container to put search history
 const searchHistoryEl = document.getElementById('history');
+//  form element
+const formEl = document.getElementById('search-form');
 
 const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
@@ -128,6 +130,8 @@ function createCityButton(cityName) {
 function showHistory() {
     //remove hide class from searchHistoryEl
     searchHistoryEl.classList.remove('hide');
+    formEl.classList.remove('col-start-5', 'col-span-4');
+    formEl.classList.add('col-start-2', 'col-span-3');
     searchHistory.forEach((element) => createCityButton(element.cityName));
 }
 
