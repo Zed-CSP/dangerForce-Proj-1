@@ -177,11 +177,8 @@ const saveSearchHistory = (cityName, lat, lon) => {
 
     createCityButton(newSearchItem.cityName);
     document.getElementById('search-input').value = ''; // erases the input field's contents.
-<<<<<<< HEAD
 }
-=======
-};
->>>>>>> ecfe00a15bcdec5a9148c09d10496361d44e55ce
+
 
 // display the pollution data on the page
 function displayPollution(colors) {
