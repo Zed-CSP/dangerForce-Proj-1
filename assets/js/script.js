@@ -132,6 +132,7 @@ function showHistory() {
     searchHistoryEl.classList.remove('hide');
     formEl.classList.remove('col-start-5', 'col-span-4');
     formEl.classList.add('col-start-2', 'col-span-3');
+    pollutionEl.classList.remove('hide');
     searchHistory.forEach((element) => createCityButton(element.cityName));
 }
 
