@@ -5,7 +5,7 @@ const pollutionEl = document.getElementById('pollution-container');
 // container to put search history
 const searchHistoryEl = document.getElementById('history');
 
-const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
 
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
@@ -34,7 +34,6 @@ searchBtn.addEventListener('click', function(event) {
             }
         });
     }   
-    showHistory(); 
 });
 
 // Call API to get pollution data and display it on the page
@@ -79,7 +78,6 @@ const saveSearchHistory = (cityName, lat, lon) => {
     if (searchHistory.length >= 10) {
         while (searchHistory.length > 9) {
             searchHistory.pop();
-            console.log(searchHistory.length)
         }   
     }
 
@@ -87,7 +85,10 @@ const saveSearchHistory = (cityName, lat, lon) => {
     if (searchHistory.length > 0) {
         for (let i = 0; i < searchHistory.length; i++) {
             if (searchHistory[i].lat == newSearchItem.lat) {
-                return;
+                // the function determines the index of an object in the local storage 
+                // by using the selected button and the text content of its associated city name.
+                let removed = searchHistory.splice(i, 1);
+                searchHistory.unshift(removed);
             }
         }
     };
@@ -95,7 +96,7 @@ const saveSearchHistory = (cityName, lat, lon) => {
     searchHistory.unshift(newSearchItem);
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
-    createCityButton(newSearchItem.cityName);
+    createCityButton();
     document.getElementById('search-input').value = ''; // erases the input field's contents.
 }
 
@@ -115,21 +116,27 @@ function displayPollution(colors) {
     `;
 }
 
-// Create a button for a city
-function createCityButton(cityName) {
-    const cityButton = document.createElement('button');
-    cityButton.setAttribute('type', 'button');
-    cityButton.setAttribute('class', 'history-btn');
-    cityButton.textContent = cityName;
-    searchHistoryEl.appendChild(cityButton);
-}
+// Create and display buttons for cities that stored in the local storage.
+function createCityButton() {
 
-// Display search history
-function showHistory() {
     //remove hide class from searchHistoryEl
     searchHistoryEl.classList.remove('hide');
-    searchHistory.forEach((element) => createCityButton(element.cityName));
+
+    searchHistoryEl.textContent = ''; // ensures that buttons are not dublicated.
+    document.getElementById('search-input').value = ''; // erases the input field's contents.
+    
+    searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+
+    searchHistory.forEach(function(element) {
+        const cityButton = document.createElement('button');
+        cityButton.setAttribute('type', 'button');
+        cityButton.setAttribute('class', 'history-btn');
+        cityButton.textContent = element.cityName;
+        searchHistoryEl.appendChild(cityButton);
+    });    
 }
+
+
 
 // Set the color of each component
 function setColors() {
@@ -224,4 +231,3 @@ searchHistoryEl.addEventListener('click', function (event) {
     }
 })
 
-// no changes. pull main
