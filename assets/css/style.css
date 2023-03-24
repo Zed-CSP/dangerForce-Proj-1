@@ -9,7 +9,6 @@ body {
   background-image: url("../images/bg-dandelion.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  display: grid;
 }
 
 #title {
@@ -99,10 +98,6 @@ body {
     color: rgb(111, 58, 58);
 }
 
-.input-side {
-  col-start-2 col-span-3 row-start-2 row-span-1 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity 20 bg-sky-900 opacity-40 place-items-center space-y-2
-}
-
 /* Sarah, please modify the styling of this block to meet the requirements specified by Tailwind CSS if needed */
 
 /* The "display: flex or grid" property cannot be used for a modal-box as it will override the close() method, causing the modal-box to remain visible even when the user clicks the "dismiss" button. */
@@ -159,11 +154,5 @@ body {
     content: "📍";
   }
   .hide {
-    display: none !important;
-    
-  }
-
-  .history-btn:hover {
-    color: rgb(0, 0, 255);
-    border-bottom: solid 1px rgb(0, 0, 255);
+    display: none;
   }
