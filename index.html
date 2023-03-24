@@ -13,27 +13,43 @@
   <body>
     <!-- main section for user interface -->
     <main class="hero grid grid-cols-12 grid-rows-6 h-screen space-y-2">
-      <h1 id="title" class="col-start-4 col-end-10 h-full row-start-1 row-span-1 place-content-around">
+      <h1
+        id="title"
+        class="col-start-4 col-end-10 h-full row-start-1 row-span-1 place-content-center  align-middle"
+      >
         <img
-          class="logo object-contain "
+          class="logo"
           src="./assets/images/logo-image.png"
           alt="logo"
         />Sneeze the Day!
       </h1>
-
+      <section
+      id="about-sneeze"
+      class="col-start-5 col-span-4 row-start-2 row-span-1 grid grid-cols-5 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-sky-900/50 text-cyan-100"
+    >
+      <p class="col-start-1 col-span-5 text-center border-solid rounded-md border-indigo-500/100 drop-shadow-lg text-xl justify-items-center">
+        You have allergies, but you want to see the world...or at least leave
+        the house.
+      </p>
+      
+      <p class="col-start-1 col-span-5 row-start-2 block static text-center border-solid rounded-md border-indigo-500/100 drop-shadow-md opacity-80 text-xl">
+        Enter a city to sneeze the day and find out how much tissue you should
+        bring!
+      </p>
+    </section>
       <!-- form for user location input -->
       <form id="search-form"
-        class="col-start-5 col-span-4 row-start-2 row-span-1 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity 20 bg-sky-900 opacity-40 place-items-center space-y-2"
+        class="col-start-5 col-span-4 row-start-3 row-span-1 grid grid-cols-5 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-rose-400/50"
       >
         <input
           type="text"
           id="search-input"
           placeholder="Enter city name"
-          class=" text-center border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-100 bg-blue-100 text-xl cursor-text leading-loose justify-items-center"
+          class="col-start-2 col-span-3 text-center border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-100 bg-blue-100 text-xl cursor-text leading-loose justify-items-center"
         />
         <button
           id="search-btn"
-          class=" block static text-center border-solid rounded-md border-indigo-500/100 drop-shadow-md opacity-80 bg-amber-400 opacity-100 text-xl leading-loose"
+          class="col-start-3 col-span-1 row-start-2 text-center border-solid rounded-md border-indigo-500/100 drop-shadow-md bg-gradient-to-r from-yellow-300 to-yellow-50 text-xl leading-loose"
         >
           Achoo!
         </button>
@@ -52,18 +68,11 @@
         id="pollution-container"
         class="col-start-6 col-span-6 row-start-2 row-span-4 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-60 bg-rose-200 block hide"
       >
-        <p class="text-3xl text-orange-700 text-center">
-          You have allergies, but you want to see the world...or at least leave
-          the house.
-        </p>
-        <br />
-        <p class="text-3xl text-orange-700 text-center">
-          Enter a city to sneeze the day and find out how much tissue you should
-          bring!
-        </p>
       </section>
 
-      <footer class="col-start-2 col-end-11 row-span-1"></footer>
+      <footer class="col-start-2 col-end-11 row-span-1">
+
+      </footer>
     </main>
 
     <script src="./assets/js/library.js" defer></script>
