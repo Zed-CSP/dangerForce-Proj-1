@@ -111,7 +111,7 @@ searchBtn.addEventListener('click', function(event) {
                 const lon = data[0].lon;
     
                 getPollution(lat, lon);
-                saveSearchHistory(searchInputVal, lat, lon);
+                saveSearchHistory(data[0].name, lat, lon);
             }
         });
     }    
