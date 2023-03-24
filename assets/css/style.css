@@ -15,16 +15,12 @@ body {
 #title {
   font-size: 300%;
   font-weight: bolder;
-  background-color: rgb(167, 195, 255);
   color: rgb(0, 0, 121);
   text-align: center;
-  margin: 2%;
 }
 
 .logo {
-  width: 8%;
-  top: 6;
-  left: 8;
+  width: 15%;
   border-radius: 50%;
   display: inline; 
 }
