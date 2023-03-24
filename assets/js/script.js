@@ -6,88 +6,7 @@ const pollutionEl = document.getElementById('pollution-container');
 const searchHistoryEl = document.getElementById('history');
 
 const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-// Object to show at what value each component should map to each color
-const aqiAttributes = {
-    aqi: {
-        green: 1,
-        orange: 2,
-        red: 3,
-        purple: 4,
-        brown: 5
-    },
-    co: {
-        green: 4400,
-        yellow: 9400,
-        orange: 12400,
-        red: 15400,
-        purple: 30400,
-        maroon: 40400,
-        brown: 50400
-    },
-    no: {
-        green: 53,
-        yellow: 100,
-        orange: 360,
-        red: 649,
-        purple: 1249,
-        maroon: 1649,
-        brown: 2049
-    },
-    no2: {
-        green: 40,
-        yellow: 80,
-        orange: 180,
-        red: 280,
-        purple: 400,
-        maroon: 800,
-        brown: 1200
-    },
-    o3: {
-        green: 54,
-        yellow: 70,
-        orange: 85,
-        red: 105,
-        purple: 200,
-        maroon: 700,
-        brown: 1200
-    },
-    so2: {
-        green: 35,
-        yellow: 75,
-        orange: 185,
-        red: 304,
-        purple: 604,
-        maroon: 1004,
-        brown: 1404
-    },
-    pm2_5: {
-        green: 12,
-        yellow: 35.4,
-        orange: 55.4,
-        red: 150.4,
-        purple: 250.4,
-        maroon: 350.4,
-        brown: 500.4
-    },
-    pm10: {
-        green: 50,
-        yellow: 150,
-        orange: 250,
-        red: 350,
-        purple: 420,
-        maroon: 500,
-        brown: 600
-    },
-    nh3: {
-        green: 200,
-        yellow: 400,
-        orange: 800,
-        red: 1200,
-        purple: 1800,
-        maroon: 2400,
-        brown: 3000
-    }
-};
+
 
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
 searchBtn.addEventListener('click', function(event) {
@@ -177,7 +96,8 @@ const saveSearchHistory = (cityName, lat, lon) => {
 
     createCityButton(newSearchItem.cityName);
     document.getElementById('search-input').value = ''; // erases the input field's contents.
-};
+}
+
 
 // display the pollution data on the page
 function displayPollution(colors) {
