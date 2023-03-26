@@ -8,8 +8,12 @@ const searchHistoryEl = document.getElementById('history');
 const formEl = document.getElementById('search-form');
 // section dom element
 const aboutEl = document.getElementById('about-sneeze');
+// reference to the 'clear local storage" button in the DOM
+const clearBtn = document.getElementById('clear-local-storage');
+// variable contains an array from local storage
+let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
-const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+
 
 
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
@@ -138,7 +142,7 @@ function createCityButton(cityName) {
     cityButton.setAttribute('type', 'button');
     cityButton.setAttribute('class', 'location-btn');
     cityButton.textContent = cityName;
-    searchHistoryEl.appendChild(cityButton);
+    searchHistoryEl.insertBefore(cityButton, clearBtn);
 }
 
 // Display search history
@@ -150,6 +154,7 @@ function showHistory() {
     formEl.classList.add('col-start-2', 'col-span-3', 'row-start-2');
     pollutionEl.classList.remove('hide');
     searchHistory.forEach((element) => createCityButton(element.cityName));
+    clearBtn.classList.remove('hide');
 }
 
 // Set the color of each component
@@ -278,3 +283,10 @@ searchHistoryEl.addEventListener('click', function (event) {
     }
 })
 
+// 
+clearBtn.addEventListener('click', function() {
+    removeHistoryButtons();
+    clearBtn.classList.add('hide');
+    localStorage.clear();
+    searchHistory = [];
+})

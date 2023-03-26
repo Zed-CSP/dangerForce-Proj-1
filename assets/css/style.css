@@ -150,9 +150,11 @@ body {
     border-bottom: solid 1px gray;
     text-align: center;
   }
+
   .location-btn::after {
     content: "📍";
   }
+  
   .hide {
     display: none !important;
     
