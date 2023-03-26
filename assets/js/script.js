@@ -36,16 +36,14 @@ searchBtn.addEventListener('click', function(event) {
                 const lon = data[0].lon;
                 const name = data[0].name;
     
-                getPollution(lat, lon);
-                saveSearchHistory(name, lat, lon);
+                getPollution(name, lat, lon);
             }
         });
     }   
-    showHistory(); 
 });
 
 // Call API to get pollution data and display it on the page
-function getPollution(lat, lon) {
+function getPollution(cityName, lat, lon) {
     const requestUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=64df37f68b0627d21253529450289fdb`;
 
     fetch(requestUrl)
@@ -69,43 +67,55 @@ function getPollution(lat, lon) {
             displayPollution(colors);
             // call the function to display the gif
             getGiphy(aqiData.aqi);
+            // call the function to create and display history buttons
+            saveSearchHistory(cityName, lat, lon);
         });
 }
 
-// function that stores search history in the local storage.
+// function verifies whether the current search city already exists in the localStorage and moving it to the 0 index in the local storage.
 const saveSearchHistory = (cityName, lat, lon) => {
     // an object containing the current city search.
     let newSearchItem = {
-        cityName: `${cityName}`,
+        cityName: cityName,
         lat: lat,
         lon: lon,
     };
-
-    // To limit the array of objects to a maximum of 10 items, an if-statement has been added to remove the last items until there are only 9 remaining. 
-    // The new city is added to the beginning of the array using the unshift() method below, becoming the 10th and most recent item.
-    if (searchHistory.length >= 10) {
-        while (searchHistory.length > 9) {
-            searchHistory.pop();
-            console.log(searchHistory.length)
-        }   
-    }
 
     // an if-statement that verifies whether the current search city already exists in the localStorage and prevents it from being duplicated.
     if (searchHistory.length > 0) {
         for (let i = 0; i < searchHistory.length; i++) {
             if (searchHistory[i].lat == newSearchItem.lat) {
-                return;
+                searchHistory.splice(i, 1);
             }
         }
     };
 
+    // The new city is added to the beginning of the array using the unshift() method below, becoming the most recent item.
     searchHistory.unshift(newSearchItem);
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
-    createCityButton(newSearchItem.cityName);
-    document.getElementById('search-input').value = ''; // erases the input field's contents.
+    // To limit the array of objects to a maximum of 10 items, an if-statement has been added to remove the last items until there are only 10 remaining. 
+    while (searchHistory.length > 10) {
+        searchHistory.pop();
+    }   
+    
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    
+    // to remove previously generated history buttons
+    removeHistoryButtons();
+    
+    showHistory();
+    
 }
 
+
+// The function clears all previously generated history buttons upon initiating a new city search in order to avoid the duplication of buttons.
+function removeHistoryButtons() {
+    let historyButtons = searchHistoryEl.getElementsByClassName('location-btn');
+
+    while (historyButtons[0]) {
+        historyButtons[0].parentNode.removeChild(historyButtons[0]);
+    }
+}
 
 // display the pollution data on the page
 function displayPollution(colors) {
@@ -133,6 +143,7 @@ function createCityButton(cityName) {
 
 // Display search history
 function showHistory() {
+    document.getElementById('search-input').value = ''; // erases the input field's contents.
     aboutEl.classList.add('hide');
     searchHistoryEl.classList.remove('hide');
     formEl.classList.remove('col-start-5', 'col-span-4', 'row-start-3');
@@ -224,9 +235,8 @@ function modalMessage(problemType, returnedData) {
     modalContainer.showModal();
 
     // Hides modal alert on click "dismiss" button
-    modalCloseBtn.addEventListener('click', function() {
-      
-        modalContainer.close()
+    modalCloseBtn.addEventListener('click', function() {      
+        modalContainer.close();
     })
 
     // When multiple cities returned, run search based on city selected in modal message
@@ -237,8 +247,7 @@ function modalMessage(problemType, returnedData) {
             if (clickedEl.matches('button')) {
                 const index = clickedEl.getAttribute('id');
                 const clarifiedResult = returnedData[index];
-                getPollution(clarifiedResult.lat, clarifiedResult.lon);
-                saveSearchHistory(clarifiedResult.name, clarifiedResult.lat, clarifiedResult.lon);
+                getPollution(clarifiedResult.name, clarifiedResult.lat, clarifiedResult.lon);
             }
         })
     }
@@ -264,8 +273,7 @@ searchHistoryEl.addEventListener('click', function (event) {
         let cityLat = searchHistory[cityIndex].lat;
         let cityLon = searchHistory[cityIndex].lon;
     
-        getPollution(cityLat, cityLon);
+        getPollution(chosenButtonTextContent, cityLat, cityLon);
     }
 })
 
-// no changes. pull main
