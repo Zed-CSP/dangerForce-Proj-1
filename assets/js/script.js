@@ -236,7 +236,7 @@ function modalMessage(problemType, returnedData) {
 
     // Hides modal alert on click "dismiss" button
     modalCloseBtn.addEventListener('click', function() {      
-        modalContainer.close();
+        modalContainer.remove();
     })
 
     // When multiple cities returned, run search based on city selected in modal message
@@ -248,6 +248,7 @@ function modalMessage(problemType, returnedData) {
                 const index = clickedEl.getAttribute('id');
                 const clarifiedResult = returnedData[index];
                 getPollution(clarifiedResult.name, clarifiedResult.lat, clarifiedResult.lon);
+                modalContainer.remove();
             }
         })
     }
