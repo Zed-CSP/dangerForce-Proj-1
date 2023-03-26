@@ -102,10 +102,8 @@ body {
 
 /* The "display: flex or grid" property cannot be used for a modal-box as it will override the close() method, causing the modal-box to remain visible even when the user clicks the "dismiss" button. */
 #modal-box {
-    display: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: fixed;
+    width: 50%;
     padding: 4%;
     border-radius: 10px;
     border: solid 4px rgb(182, 12, 182);
@@ -150,9 +148,11 @@ body {
     border-bottom: solid 1px gray;
     text-align: center;
   }
+
   .location-btn::after {
     content: "📍";
   }
+  
   .hide {
     display: none !important;
     
