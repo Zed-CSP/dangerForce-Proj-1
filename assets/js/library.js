@@ -133,5 +133,5 @@ function getGiphy(aqi) {
     // Create and append img element to display gif
     const gifEl = document.createElement('img');
     gifEl.setAttribute('src', `https://media.giphy.com/media/${gifUrl}/giphy.gif`);
-    pollutionEl.appendChild(gifEl);
+    pollutionEl.prepend(gifEl);
 }
