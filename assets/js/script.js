@@ -17,6 +17,8 @@ let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 searchBtn.addEventListener('click', inputValueCheck);
 // event listener for the selected history buttons
 searchHistoryEl.addEventListener('click', historyBtnClick);
+// event listener for the "clear history" button
+clearBtn.addEventListener('click', clearBtnClick);
 
 // validation if input field has a value upon a "search" button click
 function inputValueCheck(event) {
@@ -50,7 +52,7 @@ function getLatLon(cityName) {
             }
         })
     }   
-} ;
+};
 
 // Call API to get pollution data and display it on the page
 function getPollution(cityName, lat, lon) {
@@ -80,7 +82,7 @@ function getPollution(cityName, lat, lon) {
             // call the function to create and display history buttons
             saveSearchHistory(cityName, lat, lon);
         });
-}
+};
 
 // function verifies whether the current search city already exists in the localStorage and moving it to the 0 index in the local storage.
 const saveSearchHistory = (cityName, lat, lon) => {
@@ -109,7 +111,7 @@ const saveSearchHistory = (cityName, lat, lon) => {
     // to remove previously generated history buttons
     removeHistoryButtons();
     showHistory();
-}
+};
 
 // the function verifies if the currently searched city already exists in the localStorage, and removes it from its current index to prevent duplication.
 function duplicatePrevent(newSearchItem) {
@@ -125,7 +127,7 @@ function objectLengthCheck() {
     while (searchHistory.length > 10) {
         searchHistory.pop();
     }   
-}
+};
 
 // The function clears all previously generated history buttons upon initiating a new city search in order to avoid the duplication of buttons.
 function removeHistoryButtons() {
@@ -134,7 +136,7 @@ function removeHistoryButtons() {
     while (historyButtons[0]) {
         historyButtons[0].parentNode.removeChild(historyButtons[0]);
     }
-}
+};
 
 function displayPollution(colors) {
     pollutionData.update(aqiData);
@@ -146,7 +148,7 @@ function displayPollution(colors) {
       }
     }
     pollutionEl.innerHTML = markup;
-  }
+};
 
 const pollutionData = {
     data:   {
@@ -177,7 +179,7 @@ function createCityButton(cityName) {
     cityButton.setAttribute('class', 'location-btn');
     cityButton.textContent = cityName;
     searchHistoryEl.insertBefore(cityButton, clearBtn);
-}
+};
 
 // Display search history
 function showHistory() {
@@ -190,7 +192,7 @@ function showHistory() {
     pollutionEl.classList.add('md:col-start-2', 'md:col-span-4', 'row-start-2', 'md:row-span-4');
     searchHistory.forEach((element) => createCityButton(element.cityName));
     clearBtn.classList.remove('hide');
-}
+};
 
 // Set the color of each component
 function setColors() {
@@ -223,7 +225,7 @@ function setColors() {
     }
 
     return colors;
-}
+};
 
 // Display modal alert message
 function modalMessage(problemType, returnedData) {
@@ -291,7 +293,7 @@ function modalMessage(problemType, returnedData) {
             }
         })
     }
-}
+};
 
 
 // The function is called when history button captures the selected button, retrieves its city name text content, 
@@ -318,9 +320,10 @@ function historyBtnClick(event) {
     }
 };
 
-clearBtn.addEventListener('click', function() {
+// This function is triggered when the "clear" history button is clicked. It removes all history buttons from the history container and deletes the data related to the history from the local storage.
+function clearBtnClick() {
     removeHistoryButtons();
     clearBtn.classList.add('hide');
     localStorage.clear();
     searchHistory = [];
-})
+};
