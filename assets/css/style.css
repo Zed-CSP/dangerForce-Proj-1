@@ -168,7 +168,7 @@ max-height: 95vh;
   .location-btn {
     display: block;
     color: rgb(69, 69, 255);
-    margin: 5px 10px 0 65px;
+    /* margin: 5px 10px 0 65px; */
     border-bottom: solid 1px gray;
     text-align: center;
   }
