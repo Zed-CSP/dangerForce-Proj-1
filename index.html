@@ -12,21 +12,22 @@
 
   <body>
     <!-- main section for user interface -->
-    <main class="hero grid grid-cols-12 grid-rows-6 auto-rows-auto h-screen space-y-2 md:gap-6 overflow-y-auto">
+    <main class="hero grid grid-cols-12 grid-rows-6 auto-rows-auto h-screen space-y-2 md:gap-x-6 overflow-y-auto">
       <header
         id="title"
-        class="col-start-2 col-span-10 h-20 row-start-1 row-span-1 mt-5 place-items-center"
+        class="col-start-2 md:col-start-4 col-span-10 md:col-span-6 h-20 
+        row-start-1 row-span-1 mt-5 place-items-center"
       >
         <img
-          class="logo rounded-full h-full float-left"
+          class="logo rounded-full h-full float-left upper-left"
           src="./assets/images/logo-image.png"
           alt="logo"
         />
-        <p class="text-3xl md:text-6xl text-cyan-50 font-bold text-center leading-loose">Sneeze the Day!</p>
+        <p class="text-3xl md:text-5xl lg:text-5xl text-cyan-50 font-bold text-center leading-loose">Sneeze the Day!</p>
     </header>
       <section
         id="about-sneeze"
-        class="col-start-2 col-span-10 row-start-2 row-span-1 grid grid-cols-5 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-sky-900/50 text-cyan-100 text-md md:text-2xl text-center"
+        class="col-start-2 md:col-start-4 col-span-10 md:col-span-6 row-start-2 row-span-1 grid grid-cols-5 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-sky-900/50 text-cyan-100 text-md md:text-xl text-center"
       >
         <p
           class="col-start-1 col-span-5"
@@ -45,7 +46,8 @@
       <!-- form for user location input -->
       <form
         id="search-form"
-        class="col-start-4 col-span-6 row-start-3 row-span-1 grid grid-cols-7 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-rose-400/50"
+        class="col-start-4 md:col-start-5 col-span-6 md:col-span-4 
+        row-start-3 row-span-1 grid grid-cols-7 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-rose-400/50"
       >
         <input
           type="text"
@@ -66,12 +68,13 @@
         id="history"
         class="col-start-2 md:col-start-2 col-span-10 md:col-span-4 
         row-start-6 md:row-start-3 row-span-1 md:row-span-3 
+        grid grid-cols-1
         border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg 
         opacity-90 bg-rose-300 overflow-y-auto 
         hide">
     
-        <p class="text-center underline-offset-8">Tissue Box</p>
-        <button id="clear-local-storage">clear</button>
+        <p class="mt-5 text-center underline-offset-8 text-indigo-900 text-xl font-bold" >Tissue Box</p>
+        <button id="clear-local-storage" class="h-20 self-end border-solid rounded-md border-indigo-500/100 drop-shadow-md bg-gradient-to-r from-yellow-300 to-yellow-50 text-lg">Clear</button>
       </div>
       </section>
 
@@ -82,14 +85,14 @@
         row-start-3 row-span-3 md:row-span-3
         border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-90 bg-rose-200 overflow-y-auto hide"
       ></section>
-
-      <footer
-      class="col-start-1 col-span-3 row-start-6 row-span-1 grid grid-cols-3 gap-3 text-center drop-shadow-lg">
-      <a href="https://openweathermap.org/"> <img src="./assets/images/OpenWeather-Master-Logo RGB.png" alt="icon image of a sun partially hidden behind clouds" class="col-start-1 col-span-1 absolute bottom-3 left-3"></a>
-      <a href="https://giphy.com/"> <img src="./assets/images/Poweredby_100px-White_VertLogo.png" alt="icon image of a colorful dog-eared page reads 'powered by giphy'" class="col-start-2 col-span-1 absolute bottom-3"></a>
-      <a href="https://etc.usf.edu/clipart/"> <img src="./assets/images/clip-art-etc-logo.png" alt="logo reads 'Clip Art Etc.'" class="col-start-3 col-span-1 absolute bottom-3"></a>
-    </footer>
     </main>
+      <footer
+      class="flex flex-row place-content-around">
+      <a href="https://openweathermap.org/"> <img src="./assets/images/OpenWeather-Master-Logo RGB.png" alt="icon image of a sun partially hidden behind clouds" class="w-20 h-8"></a>
+      <a href="https://giphy.com/"> <img src="./assets/images/Poweredby_100px-White_VertLogo.png" alt="icon image of a colorful dog-eared page reads 'powered by giphy'" class="w-20"></a>
+      <a href="https://etc.usf.edu/clipart/"> <img src="./assets/images/clip-art-etc-logo.png" alt="logo reads 'Clip Art Etc.'" class="w-20"></a>
+    </footer>
+   
 
     <script src="./assets/js/library.js" defer></script>
     <script src="./assets/js/script.js" defer></script>

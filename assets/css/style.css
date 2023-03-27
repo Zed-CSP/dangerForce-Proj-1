@@ -13,6 +13,10 @@ body {
   background-position: absolute;
 }
 
+.hero {
+max-height: 95vh;
+}
+
 
 /* #title {
   font-size: 300%;
@@ -101,7 +105,8 @@ body {
 }
 
 .upper-left {
-  position: absolute;
+
+  max-height: 100%;
   top: 0;
   left: 0;
 }
@@ -163,7 +168,7 @@ body {
   .location-btn {
     display: block;
     color: rgb(69, 69, 255);
-    margin: 5px 10px 0 65px;
+    /* margin: 5px 10px 0 65px; */
     border-bottom: solid 1px gray;
     text-align: center;
   }

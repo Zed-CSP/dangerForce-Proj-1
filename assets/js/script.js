@@ -31,7 +31,7 @@ function inputValueCheck(event) {
 
 // call the function to obtain the latitude and longitude values for the chosen city only if the input field has passed the validation process successfully.
 function getLatLon(cityName) {
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=64df37f68b0627d21253529450289fdb`)
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=64df37f68b0627d21253529450289fdb`)
         .then(response => response.json())
         .then(data => {
             if (data.length < 1) {
@@ -51,7 +51,7 @@ function getLatLon(cityName) {
 function getPollution(cityData) {
     const lat = cityData.lat;
     const lon = cityData.lon;
-    const requestUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=64df37f68b0627d21253529450289fdb`;
+    const requestUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=64df37f68b0627d21253529450289fdb`;
 
     fetch(requestUrl)
         .then(response => response.json())
@@ -92,26 +92,37 @@ const saveSearchHistory = (cityData) => {
 
     // an if-statement that verifies whether the current search city already exists in the localStorage and prevents it from being duplicated.
     if (searchHistory.length > 0) {
-        for (let i = 0; i < searchHistory.length; i++) {
-            if (searchHistory[i].lat == newSearchItem.lat) {
-                searchHistory.splice(i, 1);
-            }
-        }
-    };
+        duplicatePrevent(newSearchItem);
+    }
 
     // The new city is added to the beginning of the array using the unshift() method below, becoming the most recent item.
     searchHistory.unshift(newSearchItem);
 
-    // To limit the array of objects to a maximum of 10 items, an if-statement has been added to remove the last items until there are only 10 remaining. 
-    while (searchHistory.length > 10) {
-        searchHistory.pop();
-    }   
-    
+    if (searchHistory.length > 10) {
+    objectLengthCheck();
+    }
+     
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
     
     // to remove previously generated history buttons
     removeHistoryButtons();
     showHistory();
+}
+
+// the function verifies if the currently searched city already exists in the localStorage, and removes it from its current index to prevent duplication.
+function duplicatePrevent(newSearchItem) {
+    for (let i = 0; i < searchHistory.length; i++) {
+        if (searchHistory[i].lat == newSearchItem.lat) {
+            searchHistory.splice(i, 1);
+        }
+    }
+};
+
+// To limit the array of objects to a maximum of 10 items, a while loop has been added to remove the last items until there are only 10 remaining. 
+function objectLengthCheck() {
+    while (searchHistory.length > 10) {
+        searchHistory.pop();
+    }   
 }
 
 // The function clears all previously generated history buttons upon initiating a new city search in order to avoid the duplication of buttons.
@@ -175,9 +186,10 @@ function showHistory() {
     document.getElementById('search-input').value = ''; // erases the input field's contents.
     aboutEl.classList.add('hide');
     searchHistoryEl.classList.remove('hide');
-    formEl.classList.remove('col-start-5', 'col-span-4', 'row-start-3');
-    formEl.classList.add('col-start-2', 'col-span-3', 'row-start-2');
-    pollutionEl.classList.remove('hide');
+    formEl.classList.remove('md:col-start-5', 'md:col-span-4', 'row-start-3');
+    formEl.classList.add('md:col-start-2', 'md:col-span-4', 'row-start-2');
+    pollutionEl.classList.remove('hide', 'md:row-span-3');
+    pollutionEl.classList.add('md:col-start-2', 'md:col-span-4', 'row-start-2', 'md:row-span-4');
     searchHistory.forEach((element) => createCityButton(element));
     clearBtn.classList.remove('hide');
 }
