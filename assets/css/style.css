@@ -11,22 +11,21 @@ body {
   background-repeat: no-repeat;
 }
 
-#title {
+/* #title {
   font-size: 300%;
   font-weight: bolder;
-  /* background-color: rgb(167, 195, 255); */
   text-align: center;
   margin: 2%;
   background: linear-gradient(to bottom, #9df0ff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
+} */
+/* 
 .logo {
   width: 8%;
   border-radius: 50%;
   display: inline; 
-}
+} */
 
 /* #search-input {
   border: 1px solid #ccc;
