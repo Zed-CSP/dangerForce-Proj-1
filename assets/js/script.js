@@ -40,18 +40,17 @@ function getLatLon(cityName) {
             } else if (data.length > 1) {
                 modalMessage('multiple cities returned', data);
             } else {
-                const lat = data[0].lat;
-                const lon = data[0].lon;
-                const cityName = data[0].name;
-    
-                getPollution(cityName, lat, lon);
+                const cityData = data[0];
+                getPollution(cityData);
             }
         })
     }   
 } ;
 
 // Call API to get pollution data and display it on the page
-function getPollution(cityName, lat, lon) {
+function getPollution(cityData) {
+    const lat = cityData.lat;
+    const lon = cityData.lon;
     const requestUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=64df37f68b0627d21253529450289fdb`;
 
     fetch(requestUrl)
@@ -75,18 +74,20 @@ function getPollution(cityName, lat, lon) {
             displayPollution(colors);
             // call the function to display the gif
             getGiphy(aqiData.aqi);
-            // call the function to create and display history buttons
-            saveSearchHistory(cityName, lat, lon);
+            // call the function to save search to history
+            saveSearchHistory(cityData);
         });
 }
 
-// function verifies whether the current search city already exists in the localStorage and moving it to the 0 index in the local storage.
-const saveSearchHistory = (cityName, lat, lon) => {
-    // an object containing the current city search.
+// function verifies whether the current search city already exists in the localStorage and moves it to the 0 index in the local storage.
+const saveSearchHistory = (cityData) => {
+    // Create an object containing the current city search.
     let newSearchItem = {
-        cityName: cityName,
-        lat: lat,
-        lon: lon,
+        name: cityData.name,
+        state: cityData.state,
+        country: cityData.country,
+        lat: cityData.lat,
+        lon: cityData.lon,
     };
 
     // an if-statement that verifies whether the current search city already exists in the localStorage and prevents it from being duplicated.
@@ -157,11 +158,15 @@ const pollutionData = {
 };
 
 // Create a button for a city
-function createCityButton(cityName) {
+function createCityButton(cityData) {
     const cityButton = document.createElement('button');
     cityButton.setAttribute('type', 'button');
     cityButton.setAttribute('class', 'location-btn');
-    cityButton.textContent = cityName;
+    if (cityData.state) {
+        cityButton.textContent = `${cityData.name}, ${cityData.state}, ${cityData.country}`;
+    } else {
+        cityButton.textContent = `${cityData.name}, ${cityData.country}`;
+    }
     searchHistoryEl.insertBefore(cityButton, clearBtn);
 }
 
@@ -173,7 +178,7 @@ function showHistory() {
     formEl.classList.remove('col-start-5', 'col-span-4', 'row-start-3');
     formEl.classList.add('col-start-2', 'col-span-3', 'row-start-2');
     pollutionEl.classList.remove('hide');
-    searchHistory.forEach((element) => createCityButton(element.cityName));
+    searchHistory.forEach((element) => createCityButton(element));
     clearBtn.classList.remove('hide');
 }
 
@@ -271,7 +276,7 @@ function modalMessage(problemType, returnedData) {
             if (clickedEl.matches('button')) {
                 const index = clickedEl.getAttribute('id');
                 const clarifiedResult = returnedData[index];
-                getPollution(clarifiedResult.name, clarifiedResult.lat, clarifiedResult.lon);
+                getPollution(clarifiedResult);
                 modalContainer.remove();
             }
         })
@@ -293,12 +298,11 @@ searchHistoryEl.addEventListener('click', function (event) {
     
         // the function determines the index of an object in the local storage 
         // by using the selected button and the text content of its associated city name.
-        let cityIndex = searchHistory.findIndex(element => element.cityName === chosenButtonTextContent);
-
-        let cityLat = searchHistory[cityIndex].lat;
-        let cityLon = searchHistory[cityIndex].lon;
+        let cityIndex = searchHistory.findIndex(element => 
+            `${element.name}, ${element.state}, ${element.country}` === chosenButtonTextContent ||
+            `${element.name}, ${element.country}` === chosenButtonTextContent);
     
-        getPollution(chosenButtonTextContent, cityLat, cityLon);
+        getPollution(searchHistory[cityIndex]);
     }
 })
 
