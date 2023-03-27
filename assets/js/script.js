@@ -91,26 +91,37 @@ const saveSearchHistory = (cityName, lat, lon) => {
 
     // an if-statement that verifies whether the current search city already exists in the localStorage and prevents it from being duplicated.
     if (searchHistory.length > 0) {
-        for (let i = 0; i < searchHistory.length; i++) {
-            if (searchHistory[i].lat == newSearchItem.lat) {
-                searchHistory.splice(i, 1);
-            }
-        }
-    };
+        duplicatePrevent(newSearchItem);
+    }
 
     // The new city is added to the beginning of the array using the unshift() method below, becoming the most recent item.
     searchHistory.unshift(newSearchItem);
 
-    // To limit the array of objects to a maximum of 10 items, an if-statement has been added to remove the last items until there are only 10 remaining. 
-    while (searchHistory.length > 10) {
-        searchHistory.pop();
-    }   
-    
+    if (searchHistory.length > 10) {
+    objectLengthCheck();
+    }
+     
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
     
     // to remove previously generated history buttons
     removeHistoryButtons();
     showHistory();
+}
+
+// the function verifies if the currently searched city already exists in the localStorage, and removes it from its current index to prevent duplication.
+function duplicatePrevent(newSearchItem) {
+    for (let i = 0; i < searchHistory.length; i++) {
+        if (searchHistory[i].lat == newSearchItem.lat) {
+            searchHistory.splice(i, 1);
+        }
+    }
+};
+
+// To limit the array of objects to a maximum of 10 items, a while loop has been added to remove the last items until there are only 10 remaining. 
+function objectLengthCheck() {
+    while (searchHistory.length > 10) {
+        searchHistory.pop();
+    }   
 }
 
 // The function clears all previously generated history buttons upon initiating a new city search in order to avoid the duplication of buttons.
