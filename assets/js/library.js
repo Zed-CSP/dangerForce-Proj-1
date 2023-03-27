@@ -81,6 +81,8 @@ const aqiAttributes = {
     }
 };
 
+
+
 // Display gif based on AQI value
 function getGiphy(aqi) {
     // Create object of gif options for each AQI value
