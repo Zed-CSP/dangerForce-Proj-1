@@ -9,6 +9,8 @@ body {
   background-image: url("../images/bg-dandelion.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: absolute;
 }
 
 /* #title {
@@ -41,8 +43,8 @@ body {
   text-align: center;
   width: 30%;
 } */
-
-/* #search-btn {
+/* 
+#search-btn {
   display: block;
   font-size: 25px;
   background-color: rgb(111, 185, 255);
@@ -105,6 +107,13 @@ body {
 
 .giphy {
   max-height: 30vh;
+  max-width: 30vw;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+#pollution-container {
+  text-align: center;
 }
 
 /* Sarah, please modify the styling of this block to meet the requirements specified by Tailwind CSS if needed */
@@ -171,5 +180,3 @@ body {
     color: rgb(0, 0, 255);
     border-bottom: solid 1px rgb(0, 0, 255);
   }
-
-  
