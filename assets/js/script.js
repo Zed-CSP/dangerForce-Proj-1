@@ -124,7 +124,7 @@ function removeHistoryButtons() {
 // display the pollution data on the page
 function displayPollution(colors) {
     pollutionEl.innerHTML = `
-    <p class="${colors.aqi}">Air Quality Index (AQI): ${aqiData.aqi}</p>
+    <p class="${colors.aqi}"><b>Air Quality Index (AQI):</b> ${aqiData.aqi}</p>
     <p class="${colors.co}">Concentration of CO (carbon monoxide): ${aqiData.co} &#181;g/m<sup>3</sup></p>
     <p class="${colors.no}">Concentration of NO (nitrogen monoxide): ${aqiData.no} &#181;g/m<sup>3</sup></p>
     <p class="${colors.no2}">Concentration of NO<sub>2</sub> (nitrogen dioxide): ${aqiData.no2} &#181;g/m<sup>3</sup></p>
@@ -283,7 +283,6 @@ searchHistoryEl.addEventListener('click', function (event) {
     }
 })
 
-// 
 clearBtn.addEventListener('click', function() {
     removeHistoryButtons();
     clearBtn.classList.add('hide');
