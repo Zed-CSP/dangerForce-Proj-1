@@ -13,18 +13,25 @@ const clearBtn = document.getElementById('clear-local-storage');
 // variable contains an array from local storage
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
-// when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
-searchBtn.addEventListener('click', function(event) {
+// event listener for the search button
+searchBtn.addEventListener('click', inputValueCheck);
+
+// validation if input field has a value upon a "search" button click
+function inputValueCheck(event) {
     // retrieve the input value that has been entered into the search field
     let searchInputVal = document.getElementById('search-input').value;
 
     if (!searchInputVal) {
         event.preventDefault();
-        modalMessage('empty input value')
+        modalMessage('empty input value');
     } else {
         event.preventDefault();
+        getLatLon(searchInputVal);
+};
 
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=5&appid=64df37f68b0627d21253529450289fdb`)
+// call the function to obtain the latitude and longitude values for the chosen city only if the input field has passed the validation process successfully.
+function getLatLon(cityName) {
+        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=64df37f68b0627d21253529450289fdb`)
         .then(response => response.json())
         .then(data => {
             if (data.length < 1) {
@@ -35,13 +42,13 @@ searchBtn.addEventListener('click', function(event) {
             } else {
                 const lat = data[0].lat;
                 const lon = data[0].lon;
-                const name = data[0].name;
+                const cityName = data[0].name;
     
-                getPollution(name, lat, lon);
+                getPollution(cityName, lat, lon);
             }
-        });
+        })
     }   
-});
+} ;
 
 // Call API to get pollution data and display it on the page
 function getPollution(cityName, lat, lon) {
