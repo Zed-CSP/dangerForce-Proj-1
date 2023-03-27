@@ -13,9 +13,6 @@ const clearBtn = document.getElementById('clear-local-storage');
 // variable contains an array from local storage
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
-
-
-
 // when the "search" button is clicked, call the function to obtain the latitude and longitude values for the selected city.
 searchBtn.addEventListener('click', function(event) {
     // retrieve the input value that has been entered into the search field
@@ -111,7 +108,6 @@ const saveSearchHistory = (cityName, lat, lon) => {
     
 }
 
-
 // The function clears all previously generated history buttons upon initiating a new city search in order to avoid the duplication of buttons.
 function removeHistoryButtons() {
     let historyButtons = searchHistoryEl.getElementsByClassName('location-btn');
@@ -189,7 +185,6 @@ function setColors() {
 
     return colors;
 }
-
 
 // Display modal alert message
 function modalMessage(problemType, returnedData) {
