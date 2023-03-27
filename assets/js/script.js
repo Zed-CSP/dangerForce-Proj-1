@@ -125,19 +125,54 @@ function removeHistoryButtons() {
 }
 
 // display the pollution data on the page
+// function displayPollution(colors) {
+//     pollutionEl.innerHTML = `
+//     <p class="${colors.aqi}"><b>Air Quality Index (AQI):</b> ${aqiData.aqi}</p>
+//     <p class="${colors.co}">Concentration of CO (carbon monoxide): ${aqiData.co} &#181;g/m<sup>3</sup></p>
+//     <p class="${colors.no}">Concentration of NO (nitrogen monoxide): ${aqiData.no} &#181;g/m<sup>3</sup></p>
+//     <p class="${colors.no2}">Concentration of NO<sub>2</sub> (nitrogen dioxide): ${aqiData.no2} &#181;g/m<sup>3</sup></p>
+//     <p class="${colors.o3}">Concentration of O<sub>3</sub> (ozone): ${aqiData.o3} &#181;g/m<sup>3</sup></p>
+//     <p class="${colors.so2}">Concentration of SO<sub>2</sub> (sulphur dioxide): ${aqiData.so2} &#181;g/m<sup>3</sup></p>
+//     <p class="${colors.pm2_5}">Concentration of PM<sub>2.5</sub> (fine particles matter): ${aqiData.pm2_5} &#181;g/m<sup>3</sup></p>
+//     <p class="${colors.pm10}">Concentration of PM<sub>10</sub> (coarse particulate matter): ${aqiData.pm10} &#181;g/m<sup>3</sup></p>
+//     <p class="${colors.nh3}">Concentration of NH<sub>3</sub> (ammonia): ${aqiData.nh3} &#181;g/m<sup>3</sup></p>
+//     `;
+// }
+
 function displayPollution(colors) {
-    pollutionEl.innerHTML = `
-    <p class="${colors.aqi}"><b>Air Quality Index (AQI):</b> ${aqiData.aqi}</p>
-    <p class="${colors.co}">Concentration of CO (carbon monoxide): ${aqiData.co} &#181;g/m<sup>3</sup></p>
-    <p class="${colors.no}">Concentration of NO (nitrogen monoxide): ${aqiData.no} &#181;g/m<sup>3</sup></p>
-    <p class="${colors.no2}">Concentration of NO<sub>2</sub> (nitrogen dioxide): ${aqiData.no2} &#181;g/m<sup>3</sup></p>
-    <p class="${colors.o3}">Concentration of O<sub>3</sub> (ozone): ${aqiData.o3} &#181;g/m<sup>3</sup></p>
-    <p class="${colors.so2}">Concentration of SO<sub>2</sub> (sulphur dioxide): ${aqiData.so2} &#181;g/m<sup>3</sup></p>
-    <p class="${colors.pm2_5}">Concentration of PM<sub>2.5</sub> (fine particles matter): ${aqiData.pm2_5} &#181;g/m<sup>3</sup></p>
-    <p class="${colors.pm10}">Concentration of PM<sub>10</sub> (coarse particulate matter): ${aqiData.pm10} &#181;g/m<sup>3</sup></p>
-    <p class="${colors.nh3}">Concentration of NH<sub>3</sub> (ammonia): ${aqiData.nh3} &#181;g/m<sup>3</sup></p>
-    `;
-}
+    pollutionData.update(aqiData);
+    let markup = '';
+    for (const key in pollutionData.data) {
+      if (pollutionData.data.hasOwnProperty(key)) {
+        const item = pollutionData.data[key];
+        markup += `<p class="${colors[key]}"><b>${item.name}:</b> ${item.value} &#181;g/m<sup>3</sup></p>`;
+      }
+    }
+    pollutionEl.innerHTML = markup;
+  }
+
+const pollutionData = {
+    data:   {
+        aqi: { name: 'Air Quality Index (AQI)', value: null },
+        co: { name: 'Concentration of CO (carbon monoxide)', value: null },
+        no: { name: 'Concentration of NO (nitrogen monoxide)', value: null },
+        no2: { name: 'Concentration of NO2 (nitrogen dioxide)', value: null },
+        o3: { name: 'Concentration of O3 (ozone)', value: null },
+        so2: { name: 'Concentration of SO2 (sulphur dioxide)', value: null },
+        pm2_5: { name: 'Concentration of PM2.5 (fine particles matter)', value: null },
+        pm10: { name: 'Concentration of PM10 (coarse particulate matter)', value: null },
+        nh3: { name: 'Concentration of NH3 (ammonia)', value: null },
+    },
+    update: function(aqiData) {
+        console.log("update")
+        for (const key in pollutionData.data) {
+            if (pollutionData.data.hasOwnProperty(key) && aqiData.hasOwnProperty(key)) {
+                pollutionData.data[key].value = aqiData[key];
+            }
+        }
+    }    
+};
+  
 
 // Create a button for a city
 function createCityButton(cityName) {

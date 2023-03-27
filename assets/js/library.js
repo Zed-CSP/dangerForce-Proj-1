@@ -126,6 +126,28 @@ function getGiphy(aqi) {
         ]
     }
 
+    const pollutionData = {
+        data:   {
+            aqi: { name: 'Air Quality Index (AQI)', value: null },
+            co: { name: 'Concentration of CO (carbon monoxide)', value: null },
+            no: { name: 'Concentration of NO (nitrogen monoxide)', value: null },
+            no2: { name: 'Concentration of NO2 (nitrogen dioxide)', value: null },
+            o3: { name: 'Concentration of O3 (ozone)', value: null },
+            so2: { name: 'Concentration of SO2 (sulphur dioxide)', value: null },
+            pm2_5: { name: 'Concentration of PM2.5 (fine particles matter)', value: null },
+            pm10: { name: 'Concentration of PM10 (coarse particulate matter)', value: null },
+            nh3: { name: 'Concentration of NH3 (ammonia)', value: null },
+        },
+        update: function(aqiData) {
+            console.log("update")
+            for (const key in pollutionData.data) {
+                if (pollutionData.data.hasOwnProperty(key) && aqiData.hasOwnProperty(key)) {
+                    pollutionData.data[key].value = aqiData[key];
+                }
+            }
+        }    
+    };
+
     // Randomly select gif from array for AQI
     const gifIndex = Math.floor(Math.random() * gifsByAqi[aqi].length);
     const gifUrl = gifsByAqi[aqi][gifIndex];
