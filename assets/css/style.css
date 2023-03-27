@@ -106,6 +106,13 @@ body {
 
 .giphy {
   max-height: 30vh;
+  max-width: 30vw;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+#pollution-container {
+  text-align: center;
 }
 
 /* Sarah, please modify the styling of this block to meet the requirements specified by Tailwind CSS if needed */
@@ -172,5 +179,3 @@ body {
     color: rgb(0, 0, 255);
     border-bottom: solid 1px rgb(0, 0, 255);
   }
-
-  
