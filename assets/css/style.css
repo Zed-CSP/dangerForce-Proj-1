@@ -17,64 +17,6 @@ body {
 max-height: 95vh;
 }
 
-
-/* #title {
-  font-size: 300%;
-  font-weight: bolder;
-  text-align: center;
-  margin: 2%;
-  background: linear-gradient(to bottom, #9df0ff, #ffffff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-} */
-/* 
-.logo {
-  width: 8%;
-  border-radius: 50%;
-  display: inline; 
-} */
-
-/* #search-input {
-  border: 1px solid #ccc;
-  padding: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  font-size: 30px;
-  position: absolute;
-  margin-top: 10px;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 30px;
-  text-align: center;
-  width: 30%;
-} */
-/* 
-#search-btn {
-  display: block;
-  font-size: 25px;
-  background-color: rgb(111, 185, 255);
-  color: rgb(0, 0, 121);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 10px;
-  border: 2px solid rgb(0, 0, 121);
-  width: 11%;
-} */
-
-/* #search-btn:hover {
-  background-color: rgb(148, 203, 255);
-  color: rgb(26, 26, 177);
-  box-shadow: 0 0 5px rgba(59, 59, 59, 0.3);
-} */
-
-/* #history {
-  font-size: 25px;
-  margin: 30% 0 0 10%;
-} */
-
 /* color classes for displayPollution data */
 .green {
     color: green;
@@ -122,7 +64,6 @@ max-height: 95vh;
   text-align: center;
 }
 
-/* Sarah, please modify the styling of this block to meet the requirements specified by Tailwind CSS if needed */
 
 /* The "display: flex or grid" property cannot be used for a modal-box as it will override the close() method, causing the modal-box to remain visible even when the user clicks the "dismiss" button. */
 #modal-box {
@@ -168,7 +109,7 @@ max-height: 95vh;
   .location-btn {
     display: block;
     color: rgb(69, 69, 255);
-    /* margin: 5px 10px 0 65px; */
+    
     border-bottom: solid 1px gray;
     text-align: center;
   }
