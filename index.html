@@ -12,21 +12,21 @@
 
   <body>
     <!-- main section for user interface -->
-    <main class="hero grid grid-cols-12 grid-rows-6 h-screen space-y-2">
+    <main class="hero grid grid-cols-12 grid-rows-6 auto-rows-auto h-screen space-y-2 md:gap-6 overflow-y-auto">
       <header
         id="title"
-        class="col-start-2 col-span-10 h-20 row-start-1 row-span-1"
+        class="col-start-2 col-span-10 h-20 row-start-1 row-span-1 mt-5 place-items-center"
       >
         <img
-          class="logo rounded-full object-scale-down h-full float-left"
+          class="logo rounded-full h-full float-left"
           src="./assets/images/logo-image.png"
           alt="logo"
         />
-        <h1 class="text-3xl text-cyan-50 font-bold text-center leading-loose">Sneeze the Day!</h1>
+        <p class="text-3xl md:text-6xl text-cyan-50 font-bold text-center leading-loose">Sneeze the Day!</p>
     </header>
       <section
         id="about-sneeze"
-        class="col-start-2 col-span-10 row-start-2 row-span-1 grid grid-cols-5 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-sky-900/50 text-cyan-100 text-md text-center"
+        class="col-start-2 col-span-10 row-start-2 row-span-1 grid grid-cols-5 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-sky-900/50 text-cyan-100 text-md md:text-2xl text-center"
       >
         <p
           class="col-start-1 col-span-5"
@@ -47,7 +47,6 @@
         id="search-form"
         class="col-start-4 col-span-6 row-start-3 row-span-1 grid grid-cols-7 grid rows-2 place-content-evenly border-solid rounded-md border-indigo-500/100 drop-shadow-lg bg-rose-400/50"
       >
-      <div class="md: col-start-"></div>
         <input
           type="text"
           id="search-input"
@@ -65,16 +64,23 @@
       <!-- recent searches or favorite sneezes -->
       <section
         id="history"
-        class="col-start-2 col-span-10 row-start-6 row-span-1 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-90 bg-rose-300 overscroll-auto hide"
-      >
+        class="col-start-2 md:col-start-2 col-span-10 md:col-span-4 
+        row-start-6 md:row-start-3 row-span-1 md:row-span-3 
+        border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg 
+        opacity-90 bg-rose-300 overflow-y-auto 
+        hide">
+    
         <p class="text-center underline-offset-8">Tissue Box</p>
-        <button id="clear-local-storage">clear</button>
+        <button id="clear-local-storage ">clear</button>
+      </div>
       </section>
 
       <!-- container for dynamic JS elements -->
       <section
         id="pollution-container"
-        class="col-start-2 col-span-10 row-start-2 row-span-4 border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-90 bg-rose-200 overscroll-auto hide"
+        class="col-start-2 md:col-start-6 col-span-10 md:col-span-6
+        row-start-3 row-span-3 md:row-span-3
+        border-2 border-solid rounded-md border-indigo-500/100 drop-shadow-lg opacity-90 bg-rose-200 overflow-y-auto hide"
       ></section>
 
       <footer
