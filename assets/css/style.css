@@ -13,6 +13,11 @@ body {
   background-position: absolute;
 }
 
+.hero {
+max-height: 95vh;
+}
+
+
 /* #title {
   font-size: 300%;
   font-weight: bolder;
@@ -100,7 +105,8 @@ body {
 }
 
 .upper-left {
-  position: absolute;
+
+  max-height: 100%;
   top: 0;
   left: 0;
 }
