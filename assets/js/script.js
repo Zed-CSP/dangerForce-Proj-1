@@ -170,9 +170,10 @@ function showHistory() {
     document.getElementById('search-input').value = ''; // erases the input field's contents.
     aboutEl.classList.add('hide');
     searchHistoryEl.classList.remove('hide');
-    formEl.classList.remove('col-start-5', 'col-span-4', 'row-start-3');
-    formEl.classList.add('col-start-2', 'col-span-3', 'row-start-2');
-    pollutionEl.classList.remove('hide');
+    formEl.classList.remove('md:col-start-5', 'md:col-span-4', 'row-start-3');
+    formEl.classList.add('md:col-start-2', 'md:col-span-4', 'row-start-2');
+    pollutionEl.classList.remove('hide', 'md:row-span-3');
+    pollutionEl.classList.add('md:col-start-2', 'md:col-span-4', 'row-start-2', 'md:row-span-4');
     searchHistory.forEach((element) => createCityButton(element.cityName));
     clearBtn.classList.remove('hide');
 }
