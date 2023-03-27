@@ -15,6 +15,8 @@ let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
 // event listener for the search button
 searchBtn.addEventListener('click', inputValueCheck);
+// event listener for the selected history buttons
+searchHistoryEl.addEventListener('click', historyBtnClick);
 
 // validation if input field has a value upon a "search" button click
 function inputValueCheck(event) {
@@ -97,6 +99,7 @@ const saveSearchHistory = (cityName, lat, lon) => {
     // The new city is added to the beginning of the array using the unshift() method below, becoming the most recent item.
     searchHistory.unshift(newSearchItem);
 
+    // call function if searchHistory lengt is more than 10 objects
     if (searchHistory.length > 10) {
     objectLengthCheck();
     }
@@ -290,9 +293,10 @@ function modalMessage(problemType, returnedData) {
     }
 }
 
-// The event listener captures the selected button and its city name text content, 
+
+// The function is called when history button captures the selected button, retrieves its city name text content, 
 // and subsequently passes latitude and longitude values corresponding to the chosen city name to the getPollution().
-searchHistoryEl.addEventListener('click', function (event) {
+function historyBtnClick(event) {
 
     const searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
     
@@ -312,7 +316,7 @@ searchHistoryEl.addEventListener('click', function (event) {
     
         getPollution(chosenButtonTextContent, cityLat, cityLon);
     }
-})
+};
 
 clearBtn.addEventListener('click', function() {
     removeHistoryButtons();
