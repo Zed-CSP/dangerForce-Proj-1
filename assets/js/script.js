@@ -31,7 +31,7 @@ function inputValueCheck(event) {
 
 // call the function to obtain the latitude and longitude values for the chosen city only if the input field has passed the validation process successfully.
 function getLatLon(cityName) {
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=64df37f68b0627d21253529450289fdb`)
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=64df37f68b0627d21253529450289fdb`)
         .then(response => response.json())
         .then(data => {
             if (data.length < 1) {
@@ -52,7 +52,7 @@ function getLatLon(cityName) {
 
 // Call API to get pollution data and display it on the page
 function getPollution(cityName, lat, lon) {
-    const requestUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=64df37f68b0627d21253529450289fdb`;
+    const requestUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=64df37f68b0627d21253529450289fdb`;
 
     fetch(requestUrl)
         .then(response => response.json())
