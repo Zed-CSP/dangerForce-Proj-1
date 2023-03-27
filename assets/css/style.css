@@ -104,6 +104,10 @@ body {
   left: 0;
 }
 
+.giphy {
+  max-height: 30vh;
+}
+
 /* Sarah, please modify the styling of this block to meet the requirements specified by Tailwind CSS if needed */
 
 /* The "display: flex or grid" property cannot be used for a modal-box as it will override the close() method, causing the modal-box to remain visible even when the user clicks the "dismiss" button. */
