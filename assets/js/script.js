@@ -85,13 +85,13 @@ function getPollution(cityName, lat, lon) {
 };
 
 // function verifies whether the current search city already exists in the localStorage and moving it to the 0 index in the local storage.
-const saveSearchHistory = (cityName, lat, lon) => {
+function saveSearchHistory(cityName, lat, lon) {
     // an object containing the current city search.
     let newSearchItem = {
         cityName: cityName,
         lat: lat,
         lon: lon,
-    };
+    }
 
     // an if-statement that verifies whether the current search city already exists in the localStorage and prevents it from being duplicated.
     if (searchHistory.length > 0) {
