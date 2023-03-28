@@ -1,4 +1,3 @@
-
 /* html selector enables bg-image to fill viewport */
 html {
   height: 100%;
@@ -65,59 +64,64 @@ body {
 
 /* The "display: flex or grid" property cannot be used for a modal-box as it will override the close() method, causing the modal-box to remain visible even when the user clicks the "dismiss" button. */
 #modal-box {
-    position: fixed;
-    width: 50%;
-    padding: 4%;
-    border-radius: 10px;
-    border: solid 4px rgb(182, 12, 182);
-    z-index: 2;
-    text-align: center;
-  }
-  
-  #modal-emoji {
-    width: 30%;
-    margin: auto;
-    margin-bottom: 5%;
-  }
-  
-  #modal-box h3 {
-    /* this font size formula makes the text fluid. If you will resize your browser, 
-    you will see that font size is resizing accordingly to the size of the browser. */
-    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300))); 
-    line-height: 130%;
-  }
-  
-  #modal-close-btn {
-    padding: 2% 5%;
-    border: solid 1px black;
-    background-color: rgb(199, 111, 199);
-    color: white;
-    border-radius: 10px;
-    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300))); 
-    margin-top: 5%;
-  }
+  position: fixed;
+  width: 50%;
+  padding: 4%;
+  border-radius: 10px;
+  border: solid 4px rgb(182, 12, 182);
+  z-index: 2;
+  text-align: center;
+}
 
-  #modal-close-btn:hover {
-    background-color: rgb(230, 133, 230);
-    color: black;
-  }
+#modal-emoji {
+  width: 30%;
+  margin: auto;
+  margin-bottom: 5%;
+}
 
-  /* end of modal-box styling */
+#modal-box h3 {
+  /* this font size formula makes the text fluid. If you will resize your browser, 
+  you will see that font size is resizing accordingly to the size of the browser. */
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300))); 
+  line-height: 130%;
+}
 
-  .location-btn {
-    display: block;
-    color: rgb(69, 69, 255);
-    text-align: center;
-  }
+#modal-close-btn {
+  padding: 2% 5%;
+  border: solid 1px black;
+  background-color: rgb(199, 111, 199);
+  color: white;
+  border-radius: 10px;
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300))); 
+  margin-top: 5%;
+}
 
-  .location-btn::after {
-    content: "📍";
-  }
-  
-  .hide {
-    display: none !important;
-  }
+#modal-close-btn:hover {
+  background-color: rgb(230, 133, 230);
+  color: black;
+}
+/* end of modal-box styling */
 
-  .location-btn:hover {
-    color: rgb(0, 0, 255);
-  }
+/* Search History styles */
+.location-btn {
+  display: block;
+  color: rgb(69, 69, 255);
+  text-align: center;
+}
+
+.location-btn::after {
+  content: "📍";
+}
+
+.hide {
+  display: none !important;
+}
+
+.location-btn:hover {
+  color: rgb(0, 0, 255);
+}
+
+#clear-local-storage {
+  margin: 10px auto;
+  padding: 0 30px;
+}
