@@ -35,7 +35,6 @@ function getLatLon(cityName) {
         .then(response => response.json())
         .then(data => {
             if (data.length < 1) {
-                console.log('data is undefined')
                 modalMessage('wrong city name');
             } else if (data.length > 1) {
                 modalMessage('multiple cities returned', data);
@@ -159,7 +158,6 @@ const pollutionData = {
         nh3: { name: 'Concentration of NH3 (ammonia)', value: null },
     },
     update: function(aqiData) {
-        console.log("update")
         for (const key in pollutionData.data) {
             if (pollutionData.data.hasOwnProperty(key) && aqiData.hasOwnProperty(key)) {
                 pollutionData.data[key].value = aqiData[key];
@@ -306,8 +304,6 @@ searchHistoryEl.addEventListener('click', function (event) {
     if (event.target.getAttribute('class') !== 'location-btn') {
         return
     } else {
-        console.log(chosenButtonTextContent);
-    
         // the function determines the index of an object in the local storage 
         // by using the selected button and the text content of its associated city name.
         let cityIndex = searchHistory.findIndex(element => 
