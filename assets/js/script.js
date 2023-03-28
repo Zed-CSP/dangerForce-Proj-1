@@ -139,7 +139,11 @@ function displayPollution(colors) {
     for (const key in pollutionData.data) {
       if (pollutionData.data.hasOwnProperty(key)) {
         const item = pollutionData.data[key];
-        markup += `<p class="${colors[key]}"><b>${item.name}:</b> ${item.value} &#181;g/m<sup>3</sup></p>`;
+        if (item.name === 'Air Quality Index (AQI)') {
+            markup += `<p class="${colors[key]}"><b>${item.name}:</b> ${item.value}</p>`;
+        } else {
+            markup += `<p class="${colors[key]}"><b>${item.name}:</b> ${item.value} &#181;g/m<sup>3</sup></p>`;
+        }
       }
     }
     pollutionEl.innerHTML = markup;
