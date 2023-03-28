@@ -20,11 +20,10 @@ We built this application to enable people to look up the pollution data for cit
 - Users have the ability to type in a city to view its current air quality conditions, as well as to view and search from their search history.
 
 ## Preview
-<!-- Screenshot to come -->
+![Preview of the application in action, showing two city searches and clearing the history](./assets/images/app-preview.gif)
 
 ## Setup
-<!-- URL to come -->
-There is no setup required as the web application is readily available for use here.
+There is no setup required as the web application is readily available for use at [Sneeze the Day!](https://zed-csp.github.io/dangerForce-Proj-1/).
 
 ## Usage
 - To view the air pollution data for a particular city, type the city name in the search bar.
