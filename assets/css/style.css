@@ -14,40 +14,39 @@ body {
 }
 
 .hero {
-max-height: 95vh;
+  max-height: 95vh;
 }
 
 /* color classes for displayPollution data */
 .green {
-    color: green;
+  color: green;
 }
 
 .yellow {
-    color: rgb(198, 179, 8);
+  color: rgb(198, 179, 8);
 }
 
 .orange {
-    color: orange;
+  color: orange;
 }
 
 .red {
-    color: rgb(182, 4, 4);
+  color: rgb(182, 4, 4);
 }
 
 .purple {
-    color: purple;
+  color: purple;
 }
 
 .maroon {
-    color: maroon;
+  color: maroon;
 }
 
 .brown {
-    color: rgb(111, 58, 58);
+  color: rgb(111, 58, 58);
 }
 
 .upper-left {
-
   max-height: 100%;
   top: 0;
   left: 0;
@@ -63,7 +62,6 @@ max-height: 95vh;
 #pollution-container {
   text-align: center;
 }
-
 
 /* The "display: flex or grid" property cannot be used for a modal-box as it will override the close() method, causing the modal-box to remain visible even when the user clicks the "dismiss" button. */
 #modal-box {
@@ -109,8 +107,6 @@ max-height: 95vh;
   .location-btn {
     display: block;
     color: rgb(69, 69, 255);
-    
-    border-bottom: solid 1px gray;
     text-align: center;
   }
 
@@ -120,10 +116,8 @@ max-height: 95vh;
   
   .hide {
     display: none !important;
-    
   }
 
   .location-btn:hover {
     color: rgb(0, 0, 255);
-    border-bottom: solid 1px rgb(0, 0, 255);
   }
